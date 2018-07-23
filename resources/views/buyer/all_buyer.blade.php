@@ -2,7 +2,7 @@
 @section('admin_content')
     <div class="container">
         <div class="row">
-            <div class="col-md-14">
+            <div class="col-md-12">
                 <h2><a href="{{route('add_buyer')}}" class="btn btn-success">ADD NEW BUYER</a></h2>
                 <h2>Buyers</h2>
                 <p class="alert-success">

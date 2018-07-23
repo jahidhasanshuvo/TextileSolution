@@ -46,7 +46,7 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
-                            <li><h3 style="color: #218838">Online Shopping System</h3></li>
+                            <li><h3 style="color: #218838">Textile Solution</h3></li>
                         </ul>
                         <form class="navbar-form navbar-left">
                             <div class="form-group">
@@ -89,6 +89,8 @@
         <div class="menu">
             <ul id="menu">
                 <li><a href="{{route('all_buyer')}}"><i class="fa fa-tachometer"></i> <span>Buyer</span></a></li>
+                <li><a href="{{route('all_color')}}"><i class="fa fa-tachometer"></i> <span>Color</span></a></li>
+                <li><a href="{{route('all_size')}}"><i class="fa fa-tachometer"></i> <span>Size</span></a></li>
                 @if(Session::get('access_level')== "Admin")
                     <li id="menu-academico"><a href="#"><i class="fa fa-table"></i> <span>Admin Registration</span>
                             <span
@@ -110,7 +112,7 @@
                         </li>
                     </ul>
                 </li>
-                <li id="menu-academico"><a href=""><i class="fa fa-file-text-o"></i>
+                <li id="menu-academico"><a href="{{route('all_order')}}"><i class="fa fa-file-text-o"></i>
                         <span>Order Management</span></a></li>
                 <li><a href=""><i class="lnr lnr-pencil"></i> <span>All Products</span></a>
                 </li>
@@ -177,6 +179,16 @@
                 window.location.href = link;
             }
             ;
+        });
+    });
+
+    $(document).one("submit", ".delete_form", function (e) {
+        e.preventDefault();
+        var that = this;
+        bootbox.confirm("Are you want delete!!", function (confirmed) {
+            if (confirmed) {
+                $(that).submit();
+            }
         });
     });
 </script>
