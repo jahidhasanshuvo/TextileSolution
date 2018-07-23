@@ -91,6 +91,7 @@
                 <li><a href="{{route('all_buyer')}}"><i class="fa fa-tachometer"></i> <span>Buyer</span></a></li>
                 <li><a href="{{route('all_color')}}"><i class="fa fa-tachometer"></i> <span>Color</span></a></li>
                 <li><a href="{{route('all_size')}}"><i class="fa fa-tachometer"></i> <span>Size</span></a></li>
+                <li><a href="{{route('units.index')}}"><i class="fa fa-tachometer"></i> <span>Unit</span></a></li>
                 @if(Session::get('access_level')== "Admin")
                     <li id="menu-academico"><a href="#"><i class="fa fa-table"></i> <span>Admin Registration</span>
                             <span
@@ -119,16 +120,6 @@
                 <li id="menu-academico"><a href=""><i class="fa fa-file-text-o"></i>
                         <span>Add Products</span></a></li>
                 <li id="menu-academico"><a href=""><i class="lnr lnr-book"></i> <span>Delivery Men</span></a>
-                </li>
-                <li><a href="bags.html"><i class="lnr lnr-envelope"></i> <span>Bags</span></a></li>
-                <li><a href="products.html"><i class="lnr lnr-chart-bars"></i> <span>Watches</span></a></li>
-                <li id="menu-academico"><a href="#"><i class="lnr lnr-layers"></i> <span>Sliders</span> <span
-                                class="fa fa-angle-right" style="float: right"></span></a>
-                    <ul id="menu-academico-sub">
-                        <li id="menu-academico-avaliacoes"><a href="">All Sliders</a></li>
-                        <li id="menu-academico-boletim"><a href="">Add Slider</a></li>
-
-                    </ul>
                 </li>
                 <li><a href="#"><i class="lnr lnr-chart-bars"></i> <span>Forms</span> <span
                                 class="fa fa-angle-right"
@@ -181,7 +172,6 @@
             ;
         });
     });
-
     $(document).one("submit", ".delete_form", function (e) {
         e.preventDefault();
         var that = this;

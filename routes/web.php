@@ -27,6 +27,10 @@ Route::post('/update_buyer/{id}','BuyerController@update_buyer')->name('update_b
 Route::get('/delete_buyer/{id}','BuyerController@delete_buyer')->name('delete_buyer');
 
 
+//////////////////////////Unit Controller //////////////////
+Route::resource('/units','UnitController');
+
+
 ///////////////////Color Controller////////////////////////
 
 Route::get('/all_color','ColorController@all_color')->name('all_color');
@@ -59,3 +63,6 @@ Route::get('/order_details/{id}','OrderController@order_details')->name('order_d
 
 //////////////////////////Style Controller ///////////////////
 Route::resource('order/{oid}/styles','StyleController');
+
+
+
