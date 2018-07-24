@@ -26,7 +26,7 @@
                             <td>{{$unit->description}}</td>
                             <td>
                                 <a class="btn btn-default" href="{{route('units.edit',['id'=>$unit->id])}}">Edit</a>
-                                <form style="display: inline;" class="delete_form" method="post" action="{{route('units.destroy',['id'=>$unit->id])}}">
+                                <form style="display: inline;"  method="post" action="{{route('units.destroy',['id'=>$unit->id])}}">
                                     @csrf
                                     @method('DELETE')
                                     <input type="submit" class="btn btn-danger delete_form_btn" value="Delete"/>

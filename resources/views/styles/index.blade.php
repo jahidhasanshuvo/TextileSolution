@@ -30,7 +30,7 @@
                         <td>{{$style->qty}}</td>
                         <td><a class="btn btn-info" href="{{route('styles.show',['id'=>$style->id,'oid'=>$order_id])}}">Details</a> |
                             <a class="btn btn-success" href="{{route('styles.edit',['id'=>$style->id,'oid'=>$order_id])}}">Edit</a> |
-                            <form style="display: inline;" class="delete_form" method="post" action="{{route('styles.destroy',['id'=>$style->id,'oid'=>$order_id])}}">
+                            <form style="display: inline;" method="post" action="{{route('styles.destroy',['id'=>$style->id,'oid'=>$order_id])}}">
                                 @csrf
                                 @method('DELETE')
                                 <input type="submit" class="btn btn-danger delete_form_btn"  value="Delete"/>
