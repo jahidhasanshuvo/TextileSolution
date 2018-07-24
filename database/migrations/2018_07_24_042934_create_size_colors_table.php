@@ -13,7 +13,7 @@ class CreateSizeColorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('size__colors', function (Blueprint $table) {
+        Schema::create('size_colors', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('color_id');
             $table->integer('size_id');
@@ -30,6 +30,6 @@ class CreateSizeColorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('size__colors');
+        Schema::dropIfExists('size_colors');
     }
 }

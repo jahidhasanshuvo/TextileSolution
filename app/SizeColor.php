@@ -4,12 +4,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Size_Color extends Model
+class SizeColor extends Model
 {
     protected $fillable = [
-        'color_id', 'size_id', 'style_id', 'qty'
+        'id',
+        'color_id',
+        'size_id',
+        'style_id',
+        'qty',
     ];
-
     public function color(){
         return $this->belongsTo(Color::class);
     }

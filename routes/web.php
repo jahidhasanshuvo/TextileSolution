@@ -51,6 +51,12 @@ Route::get('/edit_size/{id}','SizeController@edit_size')->name('edit_size');
 Route::post('/update_size/{id}','SizeController@update_size')->name('update_size');
 Route::get('/delete_size/{id}','SizeController@delete_size')->name('delete_size');
 
+
+//////////////////////// SizeColor Controller/////////////////
+
+Route::resource('style/{sid}/size_colors','SizeColorController');
+
+
 //////////////////Order Controller ////////////////////////
 Route::get('/all_order','OrderController@all_order')->name('all_order');
 Route::get('/ajaxOrder','OrderController@ajaxOrder')->name('ajaxOrder');
