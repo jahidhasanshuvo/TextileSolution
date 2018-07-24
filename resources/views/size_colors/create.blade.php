@@ -3,6 +3,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
+                <h2><a class="btn btn-default" href="{{route('size_colors.index',['sid'=>$sid])}}">Back To List</a></h2>
                 <h1>Save Size and Color</h1>
                 @if(Session::get('message'))
                     <div class="alert-success">
@@ -37,6 +38,7 @@
                         </div>
                     </div>
                     <input type="submit" value="Save" class="btn btn-success">
+                    <input type="reset" value="Reset" class="btn btn-warning">
                 </form>
             </div>
         </div>

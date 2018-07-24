@@ -3,6 +3,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
+
                 <h5><a class="btn btn-success" href="{{route('size_colors.create',['sid'=>$sid])}}">New Size Color</a>
                 </h5>
                 @if(Session::get('message'))

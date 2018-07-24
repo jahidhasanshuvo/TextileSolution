@@ -33,6 +33,7 @@
                         </div>
                     </div>
                     <input type="submit" value="Save" class="btn btn-success">
+                    <a class="btn btn-default" href="{{route('size_colors.index',['sid'=>$sid])}}">Cancel</a>
                 </form>
             </div>
         </div>
