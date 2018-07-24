@@ -1,5 +1,6 @@
 @extends('admin_layout')
 @section('admin_content')
+    <script src="{{asset('backend/js/bootbox.min.js')}}"></script>
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -28,7 +29,7 @@
                                 <form style="display: inline;" class="delete_form" method="post" action="{{route('units.destroy',['id'=>$unit->id])}}">
                                     @csrf
                                     @method('DELETE')
-                                    <input type="submit" class="btn btn-danger" value="Delete"/>
+                                    <input type="submit" class="btn btn-danger delete_form_btn" value="Delete"/>
                                 </form>
                             </td>
                         </tr>

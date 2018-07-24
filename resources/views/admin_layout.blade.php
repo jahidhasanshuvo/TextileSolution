@@ -172,12 +172,12 @@
             ;
         });
     });
-    $(document).one("submit", ".delete_form", function (e) {
+    $('.delete_form_btn').on('click', function (e) {
         e.preventDefault();
-        var that = this;
+        that = this;
         bootbox.confirm("Are you want delete!!", function (confirmed) {
             if (confirmed) {
-                $(that).submit();
+                $(that).closest('form').submit();
             }
         });
     });
