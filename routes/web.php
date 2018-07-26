@@ -71,4 +71,7 @@ Route::get('/order_details/{id}','OrderController@order_details')->name('order_d
 Route::resource('order/{oid}/styles','StyleController');
 
 
-
+//////////////////////Supplier Controller /////////////////
+Route::resource('/suppliers','SupplierController');
+Route::get('/active_supplier/{id}','SupplierController@active_supplier')->name('suppliers.active_supplier');
+Route::get('/inactive_supplier/{id}','SupplierController@inactive_supplier')->name('suppliers.inactive_supplier');

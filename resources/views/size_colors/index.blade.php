@@ -1,9 +1,13 @@
 @extends('admin_layout')
 @section('admin_content')
+
+    <?php
+    $oid = \App\Style::find($sid)->value('order_id');
+    ?>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-
+                <a href="{{route('styles.index',['oid'=>$oid])}}" class="btn btn-default">Back To Style List</a>
                 <h5><a class="btn btn-success" href="{{route('size_colors.create',['sid'=>$sid])}}">New Size Color</a>
                 </h5>
                 @if(Session::get('message'))

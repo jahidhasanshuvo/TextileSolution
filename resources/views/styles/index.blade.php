@@ -8,6 +8,7 @@
             <p class="alert-success">{{Session::get('message')}}</p>
             <?php } Session::put('message', null);
             ?>
+            <a href="{{route('all_order')}}" class="btn btn-default">Back To order list</a>
             <h2><a href="{{route('styles.create', ['oid' => $order_id])}}" class="btn btn-success">Create new style</a>
             </h2>
 
