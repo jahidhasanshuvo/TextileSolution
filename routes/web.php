@@ -75,3 +75,7 @@ Route::resource('order/{oid}/styles','StyleController');
 Route::resource('/suppliers','SupplierController');
 Route::get('/active_supplier/{id}','SupplierController@active_supplier')->name('suppliers.active_supplier');
 Route::get('/inactive_supplier/{id}','SupplierController@inactive_supplier')->name('suppliers.inactive_supplier');
+
+
+//////////////////////////Accessory Controller ///////////////////
+Route::resource('order/{oid}/accessories','AccessoryController');

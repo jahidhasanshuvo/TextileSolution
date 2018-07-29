@@ -115,7 +115,7 @@
                 </li>
                 <li id="menu-academico"><a href="{{route('all_order')}}"><i class="fa fa-file-text-o"></i>
                         <span>Order Management</span></a></li>
-                <li><a href=""><i class="lnr lnr-pencil"></i> <span>All Products</span></a>
+                <li><a href="{{route('suppliers.index')}}"><i class="lnr lnr-pencil"></i> <span>Suppliers</span></a>
                 </li>
                 <li id="menu-academico"><a href=""><i class="fa fa-file-text-o"></i>
                         <span>Add Products</span></a></li>

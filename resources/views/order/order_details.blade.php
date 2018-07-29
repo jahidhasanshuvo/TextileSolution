@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-6">
                 <a class="btn btn-success" href="{{route('styles.index',['oid'=>$order->id])}}">Styles</a>
-                <a class="btn btn-success" href="">Accessories</a>
+                <a class="btn btn-success" href="{{route('accessories.index',['oid'=>$order->id])}}">Accessories</a>
                 </br>
                 <h2>Order Details</h2>
                 <table class="table table-bordered">

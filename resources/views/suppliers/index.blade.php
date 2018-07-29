@@ -63,7 +63,8 @@
                 'colvis'
             ],
             "columnDefs": [
-                {"orderable": false, "targets": 5}
+                {"orderable": false, "searchable": false, "targets": 5},
+                {"searchable": false, "targets": 4}
             ]
         });
     </script>
