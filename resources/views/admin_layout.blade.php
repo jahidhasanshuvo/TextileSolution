@@ -88,6 +88,19 @@
         </header>
         <div class="menu">
             <ul id="menu">
+
+                @if(Session::get('access_level')== "Admin")
+                    <li id="menu-academico"><a href="#"><i class="fa fa-table"></i> <span>Admin Registration</span>
+                            <span
+                                    class="fa fa-angle-right" style="float: right"></span></a>
+                        <ul id="menu-academico-sub">
+                            <li id="menu-academico-avaliacoes"><a href="{{route('all_admin')}}">All Admins</a>
+                            </li>
+                            <li id="menu-academico-avaliacoes"><a href="{{route('add_admin')}}">Add Admin</a>
+                            </li>
+                        </ul>
+                    </li>
+                @endif
                 <li><a href="{{route('all_buyer')}}"><i class="fa fa-tachometer"></i> <span>Buyer</span></a></li>
                 <li><a href="{{route('all_color')}}"><i class="fa fa-tachometer"></i> <span>Color</span></a></li>
                 <li><a href="{{route('all_size')}}"><i class="fa fa-tachometer"></i> <span>Size</span></a></li>

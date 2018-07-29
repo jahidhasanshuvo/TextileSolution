@@ -79,3 +79,19 @@ Route::get('/inactive_supplier/{id}','SupplierController@inactive_supplier')->na
 
 //////////////////////////Accessory Controller ///////////////////
 Route::resource('order/{oid}/accessories','AccessoryController');
+
+////////////Admin Controller///////////////////////////////////
+Route::get('/error','AdminController@error')->name('error');
+
+Route::get('/admin','AdminController@index')->name('admin');
+Route::get('/dashboard','AdminController@showDashboard')->name('dashboard')->middleware('CheckUser');
+Route::post('/admin_dashboard','AdminController@dashboard');
+Route::get('/logout','AdminController@logout');
+Route::get('/add_admin','AdminController@add_admin')->name('add_admin')->middleware('CheckAdmin');
+Route::post('/save_admin','AdminController@save_admin')->name('save_admin')->middleware('CheckAdmin');
+Route::get('/all_admin','AdminController@all_admin')->name('all_admin')->middleware('CheckAdmin');
+Route::get('/delete_admin/{id}','AdminController@delete_admin')->name('delete_admin')->middleware('CheckAdmin');
+Route::get('/edit_admin/{id}','AdminController@edit_admin')->name('edit_admin')->middleware('CheckAdmin');
+Route::post('/update_admin/{id}','AdminController@update_admin')->name('update_admin')->middleware('CheckAdmin');
+Route::get('/edit_password/{id}','AdminController@edit_password')->name('edit_password')->middleware('CheckAdmin');
+Route::post('/update_password/{id}','AdminController@update_password')->name('update_password')->middleware('CheckAdmin');
