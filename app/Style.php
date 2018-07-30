@@ -18,4 +18,9 @@ class Style extends Model
     {
         return $this->belongsTo(Order::class);
     }
+
+    public function size_color()
+    {
+        return $this->hasMany(SizeColor::class);
+    }
 }

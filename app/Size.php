@@ -9,4 +9,8 @@ class Size extends Model
     protected $fillable = [
         'name','description'
     ];
+    public function size_color()
+    {
+        return $this->hasMany(SizeColor::class);
+    }
 }

@@ -2,7 +2,7 @@
 @section('admin_content')
 
     <?php
-    $oid = \App\Style::find($sid)->value('order_id');
+    $oid = \App\Style::find($sid)->order_id;
     ?>
     <div class="container-fluid">
         <div class="row">
