@@ -1,6 +1,5 @@
 @extends('admin_layout')
 @section('admin_content')
-    <?php $gtotal = 0;?>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-6">
@@ -23,12 +22,21 @@
                     @endforeach
                     </thead>
                     @foreach($order->styles as $style)
+                        <?php
+                        $result = $style->size_color()
+                            ->groupBy('color_id')
+                            ->select([
+                                'color_id',
+                            ])->get()->count();
+                        $rowspan = $result + 1;
+                        echo $rowspan;
+                        ?>
                         <tbody>
-                        <td rowspan="{{$style->size_color->count()}}">{{$loop->index+1}}</td>
-                        <td rowspan="{{$style->size_color->count()}}">{{$style->style_no}}</td>
-                        <td rowspan="{{$style->size_color->count()}}">{{$style->art_no}}</td>
-                        <td rowspan="{{$style->size_color->count()}}">{{$style->description}}</td>
-                        <td rowspan="{{$style->size_color->count()}}">{{$style->qty}} PCS</td>
+                        <td @if($rowspan>2) rowspan="{{$rowspan}}" @endif>{{$loop->index+1}}</td>
+                        <td @if($rowspan>2) rowspan="{{$rowspan}}" @endif>{{$style->style_no}}</td>
+                        <td @if($rowspan>2) rowspan="{{$rowspan}}" @endif>{{$style->art_no}}</td>
+                        <td @if($rowspan>2) rowspan="{{$rowspan}}" @endif>{{$style->description}}</td>
+                        <td @if($rowspan>2) rowspan="{{$rowspan}}" @endif>{{$style->qty}} PCS</td>
                         <?php
                         $size_color_usable = [];
                         foreach ($style->size_color as $size_color) {
@@ -42,20 +50,24 @@
                         }
 
                         foreach ($size_color_usable as $key => $value) {
-                            echo '<tr><td>' . \App\Color::find($key)->var . '</td>';
+                            if ($rowspan > 2) {
+                                echo '<tr>';
+                            }
+                            echo '<td>' . \App\Color::find($key)->var . '</td>';
                             echo '<td>' . \App\Color::find($key)->name . '</td>';
                             echo '<td>' . $size_color_usable[$key]['total_qty'] . '</td>';
-                            $gtotal += $size_color_usable[$key]['total_qty'];
                             foreach (\App\Size::all() as $size) {
                                 echo '<td>';
                                 foreach ($size_color_usable[$key]['items'] as $item) {
                                     if ($item['size_id'] == $size->id) {
-                                        echo $item['quantity'];
+                                        echo $item['quantity'] . " ";
                                     }
                                 }
                                 echo '</td>';
                             }
-                            echo '</tr>';
+                            if ($rowspan > 2) {
+                                echo '</tr>';
+                            }
                         }
                         ?>
                         </tbody>
