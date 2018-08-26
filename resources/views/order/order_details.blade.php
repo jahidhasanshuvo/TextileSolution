@@ -7,6 +7,20 @@
                 <a class="btn btn-success" href="{{route('accessories.index',['oid'=>$order->id])}}">Accessories</a>
                 </br>
                 <h2>Order Details</h2>
+                <table class="table table-bordered">
+                    <tr>
+                        <td>Program Code</td>
+                        <td>{{$order->program_code}}</td>
+                    </tr>
+                    <tr>
+                        <td>Buyer name</td>
+                        <td>{{$order->buyer->name}}</td>
+                    </tr>
+                    <tr>
+                        <td>Order Date</td>
+                        <td>{{$order->created_at}}</td>
+                    </tr>
+                </table>
                 <table class="table table-bordered" width="100%">
                     <thead>
                     <th>Sl.</th>
@@ -22,7 +36,7 @@
                     <th>Quantity</th>
                     </thead>
                     @foreach($order->styles as $style)
-                        <?php echo $rowspan = $style->color_styles->count() + 1?>
+                        <?php $rowspan = $style->color_styles->count() + 1?>
                         <tbody>
                         <td @if($rowspan>2) rowspan="{{$rowspan}}" @endif>{{$loop->index+1}}</td>
                         <td @if($rowspan>2) rowspan="{{$rowspan}}" @endif>{{$style->style_no}}</td>
