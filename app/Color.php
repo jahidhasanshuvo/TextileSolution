@@ -10,8 +10,8 @@ class Color extends Model
         'name', 'var', 'description'
     ];
 
-    public function size_color()
+    public function styles()
     {
-        return $this->hasMany(SizeColor::class);
+        return $this->belongsToMany(ColorStyle::class);
     }
 }

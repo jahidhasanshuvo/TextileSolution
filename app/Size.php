@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Size extends Model
 {
     protected $fillable = [
-        'name','description'
+        'name', 'description'
     ];
-    public function size_color()
+
+    public function color_styles()
     {
-        return $this->hasMany(SizeColor::class);
+        return $this->belongsToMany(ColorStyle::class);
     }
 }

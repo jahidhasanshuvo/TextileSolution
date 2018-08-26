@@ -40,37 +40,16 @@ class OrderController extends Controller
 
     public function order_details($id)
     {
-        $this->order = Order::find($id);
-        $sizes = Size::all();
+        try{
+            $order = Order::where('id', $id)->with('styles.color_styles.sizes')->first();
+        }catch (\SQLiteException $exception) {
 
-        /*        $size_color_usable = [];
-                foreach ($this->order->styles as $style) {
-                    foreach ($style->size_color as $size_color) {
-                        if (array_key_exists($size_color->color_id, $size_color_usable)) {
-                            $size_color_usable[$size_color->color_id]['total_qty'] = $size_color_usable[$size_color->color_id]['total_qty'] + $size_color->qty;
-                            array_push($size_color_usable[$size_color->color_id]['items'], ['size_id' => $size_color->size_id, 'quantity' => $size_color->qty]);
-                        } else {
-                            $size_color_usable[$size_color->color_id]['total_qty'] = $size_color->qty;
-                            $size_color_usable[$size_color->color_id]['items'] = [['size_id' => $size_color->size_id, 'quantity' => $size_color->qty]];
-                        }
-                    }
-                }*/
+        }catch (\RuntimeException $exception){
 
+        }catch (\Exception $exception){
 
-        /*        foreach ($this->order->styles as $style) {
-                    $re = $style->size_color()
-                        ->groupBy('color_id')
-                        ->select([
-                            DB::raw('sum(qty) as qty'),
-                        ])->get();*/
-
-//            dd($re);
-//            echo '<pre>';
-//            print_r($re);
-//            echo '</pre>';
-//        }
-        //     exit();
-        return view('order.order_details', ['order' => $this->order, 'sizes' => $sizes]);
+        }
+        return view('order.order_details', ['order' => $order, 'sizes' => Size::all()]);
     }
 
     public function add_order()

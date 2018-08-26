@@ -25,7 +25,7 @@
                     <div class="form-group">
                         <label class="control-label">Select Color</label>
                         <select class="form-control" name="color" required="">
-                            <option value="">Select Size</option>
+                            <option value="">Select Color</option>
                             @foreach($colors as $color)
                                 <option value="{{$color->id}}">{{$color->name}}</option>
                             @endforeach()

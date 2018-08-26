@@ -54,7 +54,7 @@ Route::get('/delete_size/{id}','SizeController@delete_size')->name('delete_size'
 
 //////////////////////// SizeColor Controller/////////////////
 
-Route::resource('style/{sid}/size_colors','SizeColorController');
+Route::resource('style/{sid}/size_colors','ColorStyleSizeController');
 
 
 //////////////////Order Controller ////////////////////////
