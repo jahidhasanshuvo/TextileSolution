@@ -45,8 +45,10 @@ class BuyerController extends Controller
         $this->buyer->address = $request->address;
         $this->buyer->contact = $request->contact;
         $this->buyer->save();
-        Session::put('message', 'Buyer Information Added Successfully!');
-        return redirect(route('add_buyer'));
+        return redirect()->back()->with([
+           'message' =>'Buyer Information Added Successfully!',
+            'status' => 'success'
+        ]);
 
     }
 
@@ -70,8 +72,10 @@ class BuyerController extends Controller
         $this->buyer->contact = $request->contact;
 
         $this->buyer->save();
-        Session::put('message', 'Buyer Information updated Successfully');
-        return redirect(route('all_buyer'));
+        return redirect(route('all_buyer'))->with([
+            'message' =>'Buyer Information Updated Successfully!',
+            'status' => 'success'
+        ]);
 
     }
 

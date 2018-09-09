@@ -3,12 +3,14 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6" style="border:2px solid rgba(106,20,22,0.98);padding: 10px 25px">
-                <?php
-                if(Session::get('message')){ ?>
-                <p class="alert-success">{{Session::get('message')}}</p>
-                <?php } Session::put('message', null);
-                ?>
-                <h2>ADD BUYER INFORMATION</h2>
+                @if(Session::get('message'))
+                    <div class="alert alert-{{Session::get('status')}} alert-dismissible">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>{{Session::get('message')}}</strong>
+                    </div>
+                    <?php Session::put('message',null);?>
+                @endif
+                <h2>EDIT BUYER INFORMATION</h2>
                 <form class="form" action="{{route('update_buyer',['id'=>$buyer->id])}}" method="post">
                     {{csrf_field()}}
                     <div class="form-group">

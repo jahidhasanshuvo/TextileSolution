@@ -1,24 +1,26 @@
 @extends('admin_layout')
 @section('admin_content')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <?php
-                if(Session::get('message')){ ?>
-                <p class="alert-success">{{Session::get('message')}}</p>
-                <?php } Session::put('message', null);
-                ?>
-                <a href="{{route('all_order')}}" class="btn btn-default">Back To order list</a>
-                <h2><a href="{{route('accessories.create',['oid'=>$oid])}}" class="btn btn-success">Add new
-                        Accessory</a></h2>
-                <table class="table table-hover" id="datatable">
+    <div class="card">
+        <div class="card-body">
+            @if(Session::get('message'))
+                <div class="alert alert-{{Session::get('status')}} alert-dismissible">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>{{Session::get('message')}}</strong>
+                </div>
+                <?php Session::put('message', null);?>
+            @endif
+            <a href="{{route('all_order')}}" class="btn btn-default">Back To order list</a>
+            <h2><a href="{{route('accessories.create',['oid'=>$oid])}}" class="btn btn-success">Add new
+                    Accessory</a></h2>
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered" id="zero_config">
                     <thead class="label-success">
                     <th>Name</th>
                     <th>Booking Quantity</th>
                     <th>Received Quantity</th>
                     <th>Balance</th>
                     <th>Goods Received Date</th>
-                    <th>Work Order</br>Submit Date</th>
+                    <th width="15%">Work Order</br>Submit Date</th>
                     <th>Supplier</th>
                     <th width="140px">Action</th>
                     </thead>
@@ -33,7 +35,7 @@
                             <td>{{$accessory->work_order_submit_date}}</td>
                             <td>{{$accessory->supplier->name}}</td>
                             <td>
-                                <a class="btn btn-success"
+                                <a class="btn btn-primary"
                                    href="{{route('accessories.edit',['oid'=>$oid,'id'=>$accessory->id])}}">Edit</a> |
                                 <form style="display: inline;" method="post"
                                       action="{{route('accessories.destroy',['oid'=>$oid,'id'=>$accessory->id])}}">
@@ -49,8 +51,10 @@
             </div>
         </div>
     </div>
+@endsection
+@section('page_script')
     <script type="text/javascript">
-        $('#datatable').DataTable({
+        $('#zero_config').DataTable({
             "scrollX": true,
             'dom': '<"#lchange"l>Brftip',
             "scrollY": "60vh",

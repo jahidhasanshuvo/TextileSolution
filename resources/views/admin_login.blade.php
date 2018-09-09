@@ -1,137 +1,167 @@
 <!DOCTYPE html>
-<html lang="en">
+<html dir="ltr">
+
 <head>
-
-    <!-- start: Meta -->
     <meta charset="utf-8">
-    <title>Admin Login Panel</title>
-
-    <!-- start: Mobile Specific -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- end: Mobile Specific -->
-    <link href="{{asset('backend/css/bootstrap.min.css')}}" rel="stylesheet" id="bootstrap-css">
-    <style type="text/css">
-        body{
-            background: url({{asset('backend/img/bg-login.jpg')}}) no-repeat center center fixed;
-        }
-        .form-signin
-        {
-            max-width: 330px;
-            padding: 15px;
-            margin: 0 auto;
-        }
-        .form-signin .form-signin-heading, .form-signin .checkbox
-        {
-            margin-bottom: 10px;
-        }
-        .form-signin .checkbox
-        {
-            font-weight: normal;
-        }
-        .form-signin .form-control
-        {
-            position: relative;
-            font-size: 16px;
-            height: auto;
-            padding: 10px;
-            -webkit-box-sizing: border-box;
-            -moz-box-sizing: border-box;
-            box-sizing: border-box;
-        }
-        .form-signin .form-control:focus
-        {
-            z-index: 2;
-        }
-        .form-signin input[type="text"]
-        {
-            margin-bottom: -1px;
-            border-bottom-left-radius: 0;
-            border-bottom-right-radius: 0;
-        }
-        .form-signin input[type="password"]
-        {
-            margin-bottom: 10px;
-            border-top-left-radius: 0;
-            border-top-right-radius: 0;
-        }
-        .account-wall
-        {
-            margin-top: 20px;
-            padding: 40px 0px 20px 0px;
-            background-color: #f7f7f7;
-            -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-            -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-        }
-        .login-title
-        {
-            color: #555;
-            font-size: 18px;
-            font-weight: 400;
-            display: block;
-        }
-        .profile-img
-        {
-            width: 96px;
-            height: 96px;
-            margin: 0 auto 10px;
-            display: block;
-            -moz-border-radius: 50%;
-            -webkit-border-radius: 50%;
-            border-radius: 50%;
-        }
-        .need-help
-        {
-            margin-top: 10px;
-        }
-        .new-account
-        {
-            display: block;
-            margin-top: 10px;
-        }
-
-    </style>
-
-
-
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('assets/images/favicon.png')}}">
+    <title>Matrix Template - The Ultimate Multipurpose admin template</title>
+    <!-- Custom CSS -->
+    <link href="{{asset('assets/libs/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('dist/css/style.min.css')}}" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
 
 <body>
-
-<div class="container">
-    <div class="row">
-        <div class="col-sm-6 col-md-4 col-md-offset-4">
-            <h1 class="text-center login-title">Sign in to continue your work</h1>
-            <div class="account-wall">
-                <img class="profile-img" src="{{asset('backend/img/icon-user-200x200.png?sz=120')}}"
-                     alt="">
-                <p class="text-center alert-danger">
-                    <?php
-                    $msg=Session::get('message');
-                    if($msg){
-                        echo $msg;
-                        Session::put('message',null);
-                    }
-                    ?>
-                </p>
-                <form class="form-signin" action="{{url('/admin_dashboard')}}" method="post">
-                    {{csrf_field()}}
-                    <input type="text" name="email" class="form-control" placeholder="Email" required autofocus>
-                    <input type="password" name="password" class="form-control" placeholder="Password" required>
-                    <button class="btn btn-lg btn-primary btn-block" type="submit">
-                        Sign in</button>
+<div class="main-wrapper">
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Login box.scss -->
+    <!-- ============================================================== -->
+    <div class="auth-wrapper d-flex no-block justify-content-center align-items-center bg-dark">
+        <div class="auth-box bg-dark border-top border-secondary">
+            @if(Session::get('message'))
+                <div class="alert alert-{{Session::get('status')}} alert-dismissible">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>{{Session::get('message')}}</strong>
+                </div>
+            @endif
+            <div id="loginform">
+                <div class="text-center p-t-20 p-b-20">
+                    <span class="db"><h2>Unity Fabrics</h2></span>
+                </div>
+                <!-- Form -->
+                <form class="form-horizontal m-t-20" id="loginform" action="{{route('login')}}" method="post">
+                    @csrf
+                    <div class="row p-b-30">
+                        <div class="col-12">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-success text-white" id="basic-addon1"><i
+                                                class="ti-user"></i></span>
+                                </div>
+                                <input type="text" name="email" class="form-control form-control-lg"
+                                       placeholder="Username" aria-label="Username" aria-describedby="basic-addon1"
+                                       required="">
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-warning text-white" id="basic-addon2"><i
+                                                class="ti-pencil"></i></span>
+                                </div>
+                                <input type="password" name="password" class="form-control form-control-lg"
+                                       placeholder="Password" aria-label="Password" aria-describedby="basic-addon1"
+                                       required="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row border-top border-secondary">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <div class="p-t-20">
+                                    <button class="btn btn-info" id="to-recover" type="button"><i
+                                                class="fa fa-lock m-r-5"></i> Lost password?
+                                    </button>
+                                    <button class="btn btn-success float-right" type="submit">Login</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </form>
+            </div>
+            <div id="recoverform">
+                <div class="text-center">
+                    <span class="text-white">Enter your e-mail address below and we will send you instructions how to recover a password.</span>
+                </div>
+                <div class="row m-t-20">
+                    <!-- Form -->
+                    <form class="col-12" action="index.html">
+                        <!-- email -->
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-danger text-white" id="basic-addon1"><i
+                                            class="ti-email"></i></span>
+                            </div>
+                            <input type="text" class="form-control form-control-lg" placeholder="Email Address"
+                                   aria-label="Username" aria-describedby="basic-addon1">
+                        </div>
+                        <!-- pwd -->
+                        <div class="row m-t-20 p-t-20 border-top border-secondary">
+                            <div class="col-12">
+                                <a class="btn btn-success" href="#" id="to-login" name="action">Back To Login</a>
+                                <button class="btn btn-info float-right" type="button" name="action">Recover</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
+    <!-- ============================================================== -->
+    <!-- Login box.scss -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Page wrapper scss in scafholding.scss -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Page wrapper scss in scafholding.scss -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Right Sidebar -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Right Sidebar -->
+    <!-- ============================================================== -->
 </div>
-<script src="{{asset('backend/js/bootstrap.min.js')}}"></script>
-<script src="{{asset('backend/jquery-1.10.2.min.js')}}"></script>
+<!-- ============================================================== -->
+<!-- All Required js -->
+<!-- ============================================================== -->
+<script src="{{asset('assets/libs/jquery/dist/jquery.min.js')}}"></script>
+<!-- Bootstrap tether Core JavaScript -->
+<script src="{{asset('assets/libs/popper.js/dist/umd/popper.min.js')}}"></script>
+<script src="{{asset('assets/libs/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+<!-- ============================================================== -->
+<!-- This page plugin js -->
+<!-- ============================================================== -->
+<script>
+
+    $('[data-toggle="tooltip"]').tooltip();
+    $(".preloader").fadeOut();
+    // ==============================================================
+    // Login and Recover Password
+    // ==============================================================
+    $('#to-recover').on("click", function () {
+        $("#loginform").slideUp();
+        $("#recoverform").fadeIn();
+    });
+    $('#to-login').click(function () {
+
+        $("#recoverform").hide();
+        $("#loginform").fadeIn();
+    });
+</script>
 
 </body>
 
 </html>
-
-
-<!------ Include the above in your HEAD tag ---------->
-

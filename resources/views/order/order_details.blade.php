@@ -1,12 +1,12 @@
 @extends('admin_layout')
 @section('admin_content')
-    <div class="container-fluid">
-        <div class="row">
+    <div class="card">
+        <div class="card-body">
             <div class="col-md-6">
                 <a class="btn btn-success" href="{{route('styles.index',['oid'=>$order->id])}}">Styles</a>
                 <a class="btn btn-success" href="{{route('accessories.index',['oid'=>$order->id])}}">Accessories</a>
                 </br>
-                <h2>Order Details</h2>
+                <div class="card-title"><h4>Order Details</h4></div>
                 <table class="table table-bordered">
                     <tr>
                         <td>Program Code</td>
@@ -21,6 +21,7 @@
                         <td>{{$order->created_at}}</td>
                     </tr>
                 </table>
+                <div class="table-responsive"></div>
                 <table class="table table-bordered" width="100%">
                     <thead>
                     <th>Sl.</th>
@@ -72,6 +73,7 @@
                 </table>
             </div>
         </div>
+    </div>
     </div>
 
 

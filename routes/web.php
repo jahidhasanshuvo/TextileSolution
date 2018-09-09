@@ -85,8 +85,8 @@ Route::get('/error','AdminController@error')->name('error');
 
 Route::get('/admin','AdminController@index')->name('admin');
 Route::get('/dashboard','AdminController@showDashboard')->name('dashboard')->middleware('CheckUser');
-Route::post('/admin_dashboard','AdminController@dashboard');
-Route::get('/logout','AdminController@logout');
+Route::post('/login','AdminController@login')->name('login');
+Route::get('/logout','AdminController@logout')->name('logout');
 Route::get('/add_admin','AdminController@add_admin')->name('add_admin')->middleware('CheckAdmin');
 Route::post('/save_admin','AdminController@save_admin')->name('save_admin')->middleware('CheckAdmin');
 Route::get('/all_admin','AdminController@all_admin')->name('all_admin')->middleware('CheckAdmin');
