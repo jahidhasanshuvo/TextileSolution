@@ -14,7 +14,7 @@
                     Accessory</a></h2>
             <div class="table-responsive">
                 <table class="table table-striped table-bordered" id="zero_config">
-                    <thead class="label-success">
+                    <thead class="label-success" style="color: white">
                     <th>Name</th>
                     <th>Booking Quantity</th>
                     <th>Received Quantity</th>
@@ -62,7 +62,7 @@
             "destroy": true,
             "order": [[0, "asc"]],
             buttons: [
-                'colvis'
+                'print',
             ],
             "columnDefs": [
                 {"orderable": false, "searchable": false, "targets": 7},

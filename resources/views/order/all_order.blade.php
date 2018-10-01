@@ -13,7 +13,7 @@
             @endif
             <div class="table-responsive">
                 <table class="table table-striped table-bordered" id="dt">
-                    <thead class="label-success">
+                    <thead class="label-success" style="color: white">
                     <th>ID</th>
                     <th>Program Code</th>
                     <th>Buyer Name</th>

@@ -13,11 +13,11 @@ use Yajra\DataTables\DataTables;
 
 class OrderController extends Controller
 {
-    private $order;
+//    private $order;
 
     public function __construct()
     {
-        $this->order = new Order();
+//        $this->order = new Order();
     }
 
     public function all_order()
@@ -27,8 +27,8 @@ class OrderController extends Controller
 
     public function ajaxOrder()
     {
-        $this->order = Order::all();
-        return DataTables::of($this->order)
+        $order = Order::all();
+        return DataTables::of($order)
             ->editColumn('buyer_id', function ($order) {
                 return $order->buyer->name;
             })
@@ -40,13 +40,13 @@ class OrderController extends Controller
 
     public function order_details($id)
     {
-        try{
+        try {
             $order = Order::where('id', $id)->with('styles.color_styles.sizes')->first();
-        }catch (\SQLiteException $exception) {
+        } catch (\SQLiteException $exception) {
 
-        }catch (\RuntimeException $exception){
+        } catch (\RuntimeException $exception) {
 
-        }catch (\Exception $exception){
+        } catch (\Exception $exception) {
 
         }
         return view('order.order_details', ['order' => $order, 'sizes' => Size::all()]);
@@ -60,10 +60,11 @@ class OrderController extends Controller
 
     public function save_order(Request $request)
     {
-        $this->order->program_code = $request->program_code;
-        $this->order->buyer_id = $request->buyer_id;
-        $this->order->date = $request->date;
-        $this->order->save();
+        $order = new Order();
+        $order->program_code = $request->program_code;
+        $order->buyer_id = $request->buyer_id;
+        $order->date = $request->date;
+        $order->save();
         Session::put('message', 'Order Saved Successfully');
         return redirect(route('add_order'));
     }
@@ -77,19 +78,21 @@ class OrderController extends Controller
 
     public function update_order(Request $request, $id)
     {
-        $this->order = Buyer::find($id);
-        $this->order->program_code = $request->program_code;
-        $this->order->buyer_id = $request->buyer_id;
-        $this->order->date = $request->date;
-        $this->order->save();
-        Session::put('message', 'Order Updated Successfully');
-        return redirect(route('all_order'));
+        $order = Order::find($id);
+        $order->program_code = $request->program_code;
+        $order->buyer_id = $request->buyer_id;
+        $order->date = $request->date;
+        $order->save();
+        return redirect(route('all_order'))->with([
+            'message' => 'Order Updated Successfully',
+            'status' => 'success'
+        ]);
     }
 
     public function delete_order($id)
     {
-        $this->order = Order::find($id);
-        $this->order->delete();
+        $order = Order::find($id);
+        $order->delete();
         Session::put('message', 'Order Deleted Successfully');
         return redirect(route('all_order'));
     }

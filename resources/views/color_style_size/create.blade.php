@@ -1,10 +1,9 @@
 @extends('admin_layout')
 @section('admin_content')
-    <div class="container">
-        <div class="row">
+    <div class="card">
+        <div class="card-title"><h4>Save Size and Color</h4></div>
+        <div class="card-body">
             <div class="col-md-6">
-                <h2><a class="btn btn-default" href="{{route('size_colors.index',['sid'=>$sid])}}">Back To List</a></h2>
-                <h1>Save Size and Color</h1>
                 @if(Session::get('message'))
                     <div class="alert-success">
                         {{Session::get('message')}}
@@ -40,6 +39,7 @@
                     <input type="submit" value="Save" class="btn btn-success">
                     <input type="reset" value="Reset" class="btn btn-warning">
                 </form>
+                <h2><a class="btn btn-primary" href="{{route('size_colors.index',['sid'=>$sid])}}">Back</a></h2>
             </div>
         </div>
     </div>

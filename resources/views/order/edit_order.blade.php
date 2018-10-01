@@ -16,8 +16,8 @@
                     <div class="form-group">
                         <label class="control-label"> Select Buyer</label>
                         <div>
-                            <select class="form-control" name="buyer_id">
-                                <option>Select Buyer</option>
+                            <select class="form-control" name="buyer_id" required>
+                                <option value="">Select Buyer</option>
                                 @foreach($buyers as $buyer)
                                     <option value="{{$buyer->id}}"
                                             @if($buyer->id == $order->buyer_id) selected @endif>{{$buyer->name}}</option>

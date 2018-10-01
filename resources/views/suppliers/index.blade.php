@@ -1,22 +1,23 @@
 @extends('admin_layout')
 @section('admin_content')
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <?php
-                if(Session::get('message')){ ?>
-                <p class="alert-success">{{Session::get('message')}}</p>
-                <?php } Session::put('message', null);
-                ?>
-                <h2><a href="{{route('suppliers.create')}}" class="btn btn-success">Add new Supplier</a></h2>
-                <table class="table table-hover" id="datatable">
-                    <thead class="label-success">
-                    <th>Name</th>
-                    <th>Address</th>
-                    <th>Mobile</th>
-                    <th>Phone</th>
-                    <th>Activity</th>
-                    <th>Action</th>
+    <div class="card">
+        <div class="card-body">
+            <?php
+            if(Session::get('message')){ ?>
+            <p class="alert-success">{{Session::get('message')}}</p>
+            <?php } Session::put('message', null);
+            ?>
+            <h2><a href="{{route('suppliers.create')}}" class="btn btn-success">Add new Supplier</a></h2>
+            <div class="card-title">Suppliers</div>
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered" id="datatable">
+                    <thead class="label-success" style="color: white">
+                    <th style="width: 5%;">Name</th>
+                    <th style="width: 40%;">Address</th>
+                    <th style="width: 10%;">Mobile</th>
+                    <th style="width: 20%;">Phone</th>
+                    <th style="width: 10%;">Activity</th>
+                    <th style="width: 10%;">Action</th>
                     </thead>
                     <tbody>
                     @foreach($suppliers as $supplier)
@@ -35,13 +36,12 @@
                                 </td>
                             @endif
                             <td>
-                                <a class="btn btn-success"
-                                   href="{{route('suppliers.edit',['id'=>$supplier->id])}}">Edit</a> |
+                                <a href="{{route('suppliers.edit',['id'=>$supplier->id])}}"><i class="fas fa-edit"></i></a>
                                 <form style="display: inline;" method="post"
                                       action="{{route('suppliers.destroy',['id'=>$supplier->id])}}">
                                     @csrf
                                     @method('DELETE')
-                                    <input type="submit" class="btn btn-danger delete_form_btn" value="Delete"/>
+                                    <button type="submit" class="delete_form_btn" style="border: none;background-color: transparent"><i class="fas fa-trash-alt"></i></button>
                                 </form>
                             </td>
                         </tr>
@@ -51,6 +51,8 @@
             </div>
         </div>
     </div>
+@endsection
+@section('page_script')
     <script type="text/javascript">
         $('#datatable').DataTable({
             "scrollX": true,
@@ -60,7 +62,7 @@
             "destroy": true,
             "order": [[0, "asc"]],
             buttons: [
-                'colvis'
+
             ],
             "columnDefs": [
                 {"orderable": false, "searchable": false, "targets": 5},

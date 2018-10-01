@@ -9,11 +9,11 @@ use Yajra\DataTables\DataTables;
 
 class BuyerController extends Controller
 {
-    private $buyer;
+//    private $buyer;
 
     public function __construct()
     {
-        $this->buyer = new Buyer();
+//        $this->buyer = new Buyer();
     }
 
     public function all_buyer()
@@ -23,8 +23,8 @@ class BuyerController extends Controller
 
     public function ajax_buyer()
     {
-        $this->buyer = Buyer::all();
-        return DataTables::of($this->buyer)->addColumn('action', function ($buyer) {
+        $buyer = Buyer::all();
+        return DataTables::of($buyer)->addColumn('action', function ($buyer) {
             return $buyer->id;
         })->make(true);
     }
@@ -36,15 +36,16 @@ class BuyerController extends Controller
 
     public function save_buyer(Request $request)
     {
-        $this->buyer->name = $request->name;
-        $this->buyer->code = $request->code;
-        $this->buyer->season = $request->season;
-        $this->buyer->brand = $request->brand;
-        $this->buyer->activity = $request->activity;
-        $this->buyer->email = $request->email;
-        $this->buyer->address = $request->address;
-        $this->buyer->contact = $request->contact;
-        $this->buyer->save();
+        $buyer = new Buyer();
+        $buyer->name = $request->name;
+        $buyer->code = $request->code;
+        $buyer->season = $request->season;
+        $buyer->brand = $request->brand;
+        $buyer->activity = $request->activity;
+        $buyer->email = $request->email;
+        $buyer->address = $request->address;
+        $buyer->contact = $request->contact;
+        $buyer->save();
         return redirect()->back()->with([
            'message' =>'Buyer Information Added Successfully!',
             'status' => 'success'
@@ -54,24 +55,24 @@ class BuyerController extends Controller
 
     public function edit_buyer($id)
     {
-        $this->buyer = Buyer::find($id);
-        return view('buyer.edit_buyer', ['buyer' => $this->buyer]);
+        $buyer = Buyer::find($id);
+        return view('buyer.edit_buyer', ['buyer' => $buyer]);
 
     }
 
     public function update_buyer(Request $request, $id)
     {
-        $this->buyer = Buyer::find($id);
-        $this->buyer->name = $request->name;
-        $this->buyer->code = $request->code;
-        $this->buyer->season = $request->season;
-        $this->buyer->brand = $request->brand;
-        $this->buyer->activity = $request->activity;
-        $this->buyer->email = $request->email;
-        $this->buyer->address = $request->address;
-        $this->buyer->contact = $request->contact;
+        $buyer = Buyer::find($id);
+        $buyer->name = $request->name;
+        $buyer->code = $request->code;
+        $buyer->season = $request->season;
+        $buyer->brand = $request->brand;
+        $buyer->activity = $request->activity;
+        $buyer->email = $request->email;
+        $buyer->address = $request->address;
+        $buyer->contact = $request->contact;
 
-        $this->buyer->save();
+        $buyer->save();
         return redirect(route('all_buyer'))->with([
             'message' =>'Buyer Information Updated Successfully!',
             'status' => 'success'
@@ -81,8 +82,8 @@ class BuyerController extends Controller
 
     public function delete_buyer($id)
     {
-        $this->buyer = Buyer::find($id);
-        $this->buyer->delete();
+        $buyer = Buyer::find($id);
+        $buyer->delete();
         Session::put('message', 'Buyer deleted successfully!');
         return redirect(route('all_buyer'));
     }

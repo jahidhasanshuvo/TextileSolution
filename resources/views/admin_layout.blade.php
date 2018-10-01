@@ -15,6 +15,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets/extra-libs/multicheck/multicheck.css')}}">
     <link href="{{asset('assets/libs/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css')}}" rel="stylesheet">
+    <link href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css" rel="stylesheet">
     <link href="{{asset('dist/css/style.min.css')}}" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -62,7 +63,7 @@
                     <!-- Logo text -->
                     <span class="logo-text">
                              <!-- dark Logo text -->
-                        <h2>Unity Fabrics</h2>
+                        <h2 style="padding-top:15px">Unity Fabrics</h2>
                         </span>
                     <!-- Logo icon -->
                     <!-- <b class="logo-icon"> -->
@@ -339,7 +340,7 @@
         <!-- footer -->
         <!-- ============================================================== -->
         <footer class="footer text-center">
-            All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>.
+            All Rights Reserved by Pine-admin. Designed and Developed by <a href="https://pinesolutions.xyz">Pine Solutions Limited</a>.
         </footer>
         <!-- ============================================================== -->
         <!-- End footer -->
@@ -372,6 +373,10 @@
 <script src="{{asset('assets/extra-libs/multicheck/datatable-checkbox-init.js')}}"></script>
 <script src="{{asset('assets/extra-libs/multicheck/jquery.multicheck.js')}}"></script>
 <script src="{{asset('assets/extra-libs/DataTables/datatables.min.js')}}"></script>
+
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
+
 <script src="{{asset('backend/js/bootbox.min.js')}}"></script>
 <script src="{{asset('backend/js/printPreview.js')}}"></script>
 <script>

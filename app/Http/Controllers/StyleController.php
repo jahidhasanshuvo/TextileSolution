@@ -8,18 +8,18 @@ use Illuminate\Support\Facades\Session;
 
 class StyleController extends Controller
 {
-    private $style;
+//    private $style;
     public function __construct()
     {
-        $this->style = new Style();
+//        $this->style = new Style();
     }
 
     public function index($oid)
     {
-        $this->style = Style::all()->where('order_id','=',$oid);
+        $style = Style::all()->where('order_id','=',$oid);
         return view('styles.index',
             [
-                'styles'=>$this->style,
+                'styles'=>$style,
                 'order_id' => $oid
             ]
         );
@@ -45,12 +45,13 @@ class StyleController extends Controller
      */
     public function store(Request $request, $oid)
     {
-        $this->style->style_no = $request->style_no;
-        $this->style->art_no = $request->art_no;
-        $this->style->description = $request->description;
-        $this->style->qty = $request->qty;
-        $this->style->order_id =$oid;
-        $this->style->save();
+        $style = new Style();
+        $style->style_no = $request->style_no;
+        $style->art_no = $request->art_no;
+        $style->description = $request->description;
+        $style->qty = $request->qty;
+        $style->order_id =$oid;
+        $style->save();
         Session::put('message','Style Added');
         return redirect(route('styles.index',['oid'=>$oid]));
     }
@@ -63,8 +64,8 @@ class StyleController extends Controller
      */
     public function show($oid, $id)
     {
-        $this->style = Style::find($id);
-        return view('styles.details',['style'=>$this->style,'oid'=>$oid]);
+        $style = Style::find($id);
+        return view('styles.details',['style'=>$style,'oid'=>$oid]);
     }
 
     /**

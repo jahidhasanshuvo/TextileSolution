@@ -14,7 +14,7 @@
             @endif
             <div class="table-responsive">
                 <table id="zero_config" class="table table-striped table-bordered">
-                    <thead class="label-success">
+                    <thead class="label-success" style="color: white">
                     <th width="10px">ID</th>
                     <th>Buyer Name</th>
                     <th>Code</th>
@@ -24,7 +24,7 @@
                     <th>Email</th>
                     <th>Address</th>
                     <th>Contact</th>
-                    <th width="100px">Action</th>
+                    <th>Action</th>
                     </thead>
                 </table>
             </div>
@@ -64,7 +64,7 @@
                         orderable: false,
                         searchable: false,
                         render: function (data) {
-                            return '<a href="edit_buyer/' + data + '" ><i class="fas fa-edit"></i></a>&nbsp;|&nbsp;<a id="delete" href="delete_buyer/' + data + '" ><i class="fas fa-trash-alt"><i></a>'
+                            return '<a href="edit_buyer/' + data + '" ><i class="fas fa-edit"></i></a>&nbsp;&nbsp;<a id="delete" href="delete_buyer/' + data + '" ><i class="fas fa-trash-alt"><i></a>'
                         }
                     }
                 ]
