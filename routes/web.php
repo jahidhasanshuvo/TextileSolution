@@ -95,3 +95,7 @@ Route::get('/edit_admin/{id}','AdminController@edit_admin')->name('edit_admin')-
 Route::post('/update_admin/{id}','AdminController@update_admin')->name('update_admin')->middleware('CheckAdmin');
 Route::get('/edit_password/{id}','AdminController@edit_password')->name('edit_password')->middleware('CheckAdmin');
 Route::post('/update_password/{id}','AdminController@update_password')->name('update_password')->middleware('CheckAdmin');
+
+
+//////////////////Working Items Controller//////////////////
+Route::resource('working_items','WorkingItemController',["except"=>["show"]]);
