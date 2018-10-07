@@ -1,14 +1,14 @@
 @extends('admin_layout')
 @section('admin_content')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6" style="border:2px solid rgba(106,20,22,0.98);padding: 10px 25px">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-title"><h4>ADD SUPPLIER INFORMATION</h4></div>
                 <?php
                 if(Session::get('message')){ ?>
                 <p class="alert-success">{{Session::get('message')}}</p>
                 <?php } Session::put('message', null);
                 ?>
-                <h2>ADD SUPPLIER INFORMATION</h2>
                 <form class="form" action="{{route('suppliers.store')}}" method="post">
                     @csrf
                     <div class="form-group">
@@ -49,7 +49,7 @@
                     </div>
                     <input type="submit" class="btn btn-success" value="Submit"/>
                     <input type="reset" class="btn btn-danger" value="Reset"/>
-                    <h2><a class="btn btn-default" href="{{route('suppliers.index')}}">Back to List</a></h2>
+                    <h2 style="float:right"><a class="btn btn-default" href="{{route('suppliers.index')}}">Back to List</a></h2>
                 </form>
             </div>
         </div>
