@@ -1,7 +1,9 @@
 @extends('admin_layout')
 @section('admin_content')
-    <div class="container-fluid">
-        <div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-title"><h4>EDIT STYLE</h4></div>
             <div class="col-md-12">
                 <?php
                 if(Session::get('message')){ ?>
@@ -35,7 +37,7 @@
                             <input type="number" class="form-control" name="qty" value="{{$style->qty}}">
                         </div>
                     </div>
-                    <input type="submit" class="btn btn-success">
+                    <input type="submit" class="btn btn-success" value="UPDATE">
                 </form>
             </div>
         </div>
