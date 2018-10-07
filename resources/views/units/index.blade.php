@@ -1,10 +1,11 @@
 @extends('admin_layout')
 @section('admin_content')
     <script src="{{asset('backend/js/bootbox.min.js')}}"></script>
-    <div class="container">
-        <div class="row">
+    <div class="card">
+        <div class="card-body">
+            <div class="card-title"><h4>UNITS</h4></div>
             <div class="col-md-12">
-                <h5><a class="btn btn-success" href="{{route('units.create')}}">Add new unit</a></h5>
+                <h5><a class="btn btn-primary" href="{{route('units.create')}}">ADD NEW UNIT</a></h5>
                 @if(Session::get('message'))
                     <div class="alert-success">
                         {{Session::get('message')}}
@@ -12,7 +13,7 @@
                     </div>
                 @endif
                 <table class="table table-hover">
-                    <thead class="label-success">
+                    <thead class="label-success" style="color: white">
                     <th>Id</th>
                     <th>Name</th>
                     <th>Description</th>
