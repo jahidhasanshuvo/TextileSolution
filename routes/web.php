@@ -56,6 +56,10 @@ Route::get('/delete_size/{id}','SizeController@delete_size')->name('delete_size'
 
 Route::resource('style/{sid}/size_colors','ColorStyleSizeController');
 
+//////////////////////// WorkPlan Controller/////////////////
+
+Route::resource('order/{oid}/work_plans','WorkPlanController');
+
 
 //////////////////Order Controller ////////////////////////
 Route::get('/all_order','OrderController@all_order')->name('all_order');

@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-6">
                 <table class="table table-hover">
-                    <h2><a class="btn btn-success" href="{{route('size_colors.index',['sid'=>$style->id])}}">Size and Color</a></h2>
+                    <a class="btn btn-success" href="{{route('size_colors.index',['sid'=>$style->id])}}">Size and Color</a>&nbsp;
 
                     <thead class="label-success"><h2>Style Details</h2></thead>
                     <tr>

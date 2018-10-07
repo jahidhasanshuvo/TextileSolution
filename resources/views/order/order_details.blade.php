@@ -6,6 +6,7 @@
                 <div class="col-md-6">
                     <a class="btn btn-success" href="{{route('styles.index',['oid'=>$order->id])}}">Styles</a>
                     <a class="btn btn-success" href="{{route('accessories.index',['oid'=>$order->id])}}">Accessories</a>
+                    <a class="btn btn-success" href="{{route('work_plans.index',['oid'=>$order->id])}}">Work Plan</a>
                     </br>
                     <div class="card-title"><h4>Order Details</h4></div>
                     <table class="table table-bordered">

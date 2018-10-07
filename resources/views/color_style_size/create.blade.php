@@ -1,4 +1,5 @@
 @extends('admin_layout')
+@section('title','Size Color')
 @section('admin_content')
     <div class="card">
         <div class="card-title"><h4>Save Size and Color</h4></div>
