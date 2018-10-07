@@ -1,14 +1,14 @@
 @extends('admin_layout')
 @section('admin_content')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-title"><h4>ADD NEW ORDER</h4></div>
                 <?php
                 if(Session::get('message')){ ?>
                 <p class="alert-success">{{Session::get('message')}}</p>
                 <?php } Session::put('message', null);
                 ?>
-                <h2>Add New Order</h2>
                 <form action="{{route('save_order')}}" method="post">
                     {{csrf_field()}}
                     <div class="form-group">
@@ -29,13 +29,13 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label"> Select Buyer</label>
+                        <label class="control-label"> Select Date</label>
                         <div>
                             <input type="date" name="date" class="form-control">
                         </div>
                     </div>
 
-                    <input type="submit" class="btn btn-success">
+                    <input type="submit" class="btn btn-success" value="SUBMIT">
                     <input type="reset" class="btn btn-default">
                 </form>
             </div>
