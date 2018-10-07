@@ -1,14 +1,15 @@
 @extends('admin_layout')
 @section('admin_content')
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <h2>Add new Units</h2>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-title"><h4>ADD UNIT</h4></div>
+
                 @if(Session::get('message'))
                     <div class="alert-success">
                         {{Session::get('message')}}
-                        <?php Session::put('message',null)?>
+                        <?php Session::put('message', null)?>
                     </div>
                 @endif
                 <form method="post" action="{{route('units.store')}}">
@@ -25,7 +26,7 @@
                             <input type="text" class="form-control" name="description">
                         </div>
                     </div>
-                    <input type="submit" class="btn btn-success">
+                    <input type="submit" class="btn btn-success" value="SUBMIT">
                     <input type="reset" class="btn  btn-primary">
                 </form>
             </div>

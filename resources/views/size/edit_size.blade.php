@@ -1,9 +1,11 @@
 @extends('admin_layout')
 @section('admin_content')
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-title"><h4>EDIT SIZE</h4></div>
+
                 <form method="post" action="{{route('update_size',['id'=>$size->id])}}">
                     {{csrf_field()}}
                     <div class="form-group">
@@ -18,7 +20,7 @@
                             <input type="text" class="form-control" name="description" value="{{$size->description}}">
                         </div>
                     </div>
-                    <input type="submit" class="btn btn-success">
+                    <input type="submit" class="btn btn-success" value="SUBMIT">
                     <a class="btn btn-default" href="{{route('all_size')}}">Cancel</a>
                 </form>
             </div>

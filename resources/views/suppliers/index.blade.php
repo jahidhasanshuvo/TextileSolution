@@ -2,13 +2,14 @@
 @section('admin_content')
     <div class="card">
         <div class="card-body">
+            <div class="card-title">Suppliers</div>
+
             <?php
             if(Session::get('message')){ ?>
             <p class="alert-success">{{Session::get('message')}}</p>
             <?php } Session::put('message', null);
             ?>
-            <h2><a href="{{route('suppliers.create')}}" class="btn btn-success">Add new Supplier</a></h2>
-            <div class="card-title">Suppliers</div>
+            <h2><a href="{{route('suppliers.create')}}" class="btn btn-primary">ADD NEW SUPPLIER</a></h2>
             <div class="table-responsive">
                 <table class="table table-striped table-bordered" id="datatable">
                     <thead class="label-success" style="color: white">
@@ -41,7 +42,9 @@
                                       action="{{route('suppliers.destroy',['id'=>$supplier->id])}}">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="delete_form_btn" style="border: none;background-color: transparent"><i class="fas fa-trash-alt"></i></button>
+                                    <button type="submit" class="delete_form_btn"
+                                            style="border: none;background-color: transparent"><i
+                                                class="fas fa-trash-alt"></i></button>
                                 </form>
                             </td>
                         </tr>
@@ -56,14 +59,12 @@
     <script type="text/javascript">
         $('#datatable').DataTable({
             "scrollX": true,
-            'dom': '<"#lchange"l>Brftip',
+            // 'dom': '<"#lchange"l>Brftip',
             "scrollY": "60vh",
             "scrollCollapse": true,
             "destroy": true,
             "order": [[0, "asc"]],
-            buttons: [
-
-            ],
+            "buttons": [          ],
             "columnDefs": [
                 {"orderable": false, "searchable": false, "targets": 5},
                 {"searchable": false, "targets": 4}

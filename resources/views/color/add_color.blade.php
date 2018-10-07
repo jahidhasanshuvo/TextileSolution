@@ -1,13 +1,14 @@
 @extends('admin_layout')
 @section('admin_content')
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-title"><h4>ADD COLOR</h4></div>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
                 @if(Session::get('message'))
                     <div class="alert-success">
                         {{Session::get('message')}}
-                        <?php Session::put('message',null)?>
+                        <?php Session::put('message', null)?>
                     </div>
                 @endif
                 <form method="post" action="{{route('save_color')}}">
@@ -30,7 +31,7 @@
                             <input type="text" class="form-control" name="description">
                         </div>
                     </div>
-                    <input type="submit" class="btn btn-success">
+                    <input type="submit" class="btn btn-success" value="Submit">
                     <input type="reset" class="btn  btn-primary">
                 </form>
             </div>

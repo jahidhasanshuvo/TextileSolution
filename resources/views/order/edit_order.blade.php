@@ -1,9 +1,10 @@
 @extends('admin_layout')
 @section('admin_content')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <h2>Edit Order</h2>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-title"><h4>EDIT ORDER</h4></div>
+
                 <form action="{{route('update_order',['id'=>$order->id])}}" method="post">
                     {{csrf_field()}}
                     <div class="form-group">
@@ -26,13 +27,13 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label"> Select Buyer</label>
+                        <label class="control-label"> Select Date</label>
                         <div>
                             <input type="date" name="date" class="form-control" value="{{$order->date}}">
                         </div>
                     </div>
 
-                    <input type="submit" class="btn btn-success">
+                    <input type="submit" class="btn btn-success" value="SUBMIT">
                     <a href="{{route('all_order')}}" class="btn btn-default">Cancel</a>
                 </form>
             </div>

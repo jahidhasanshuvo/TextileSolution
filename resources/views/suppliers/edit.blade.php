@@ -1,9 +1,10 @@
 @extends('admin_layout')
 @section('admin_content')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6" style="border:2px solid rgba(106,20,22,0.98);padding: 10px 25px">
-                <h2>ADD SUPPLIER INFORMATION</h2>
+
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-title">EDIT SUPPLIER INFORMATION</div>
                 <form class="form" action="{{route('suppliers.update',['id'=>$supplier->id])}}" method="post">
                     @csrf
                     @method('PUT')

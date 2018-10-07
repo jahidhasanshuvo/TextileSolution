@@ -54,9 +54,6 @@
             "scrollCollapse": true,
             "destroy": true,
             "order": [[0, "asc"]],
-            buttons: [
-
-            ],
             "columnDefs": [
                 {"orderable": false, "searchable": false, "targets": 5},
             ]

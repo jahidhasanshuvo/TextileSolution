@@ -15,7 +15,7 @@
                             <td>{{$order->program_code}}</td>
                         </tr>
                         <tr>
-                            <td>Buyer name</td>
+                            <td>Buyer Name</td>
                             <td>{{$order->buyer->name}}</td>
                         </tr>
                         <tr>

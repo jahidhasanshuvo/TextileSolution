@@ -1,9 +1,10 @@
 @extends('admin_layout')
 @section('admin_content')
-    <div class="container">
-        <div class="row">
+    <div class="card">
+        <div class="card-body">
+            <div class="card-title"><h4>COLORS</h4></div>
             <div class="col-md-12">
-                <h5><a class="btn btn-success" href="{{route('add_color')}}">Add new color</a></h5>
+                <h5><a class="btn btn-primary" href="{{route('add_color')}}">ADD NEW COLOR</a></h5>
                 @if(Session::get('message'))
                     <div class="alert-success">
                         {{Session::get('message')}}
@@ -36,5 +37,6 @@
                 </table>
             </div>
         </div>
+
     </div>
 @endsection

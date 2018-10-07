@@ -1,9 +1,11 @@
 @extends('admin_layout')
 @section('admin_content')
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-title"><h4>EDIT COLOR</h4></div>
+
                 <form method="post" action="{{route('update_color',['id'=>$color->id])}}">
                     {{csrf_field()}}
                     <div class="form-group">
