@@ -34,7 +34,7 @@
                         </div>
                     </div>
                     <input type="submit" class="btn btn-success" value="Update"/>
-                    <h2><a class="btn btn-default" href="{{route('suppliers.index')}}">Cancel</a></h2>
+                    <h2 style="float: right;"><a class="btn btn-default" href="{{route('suppliers.index')}}">Cancel</a></h2>
                 </form>
             </div>
         </div>
