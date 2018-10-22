@@ -15,7 +15,7 @@ class CreateWorkPlansTable extends Migration
     {
         Schema::create('work_plans', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('order_id');
+            $table->integer('style_id');
             $table->integer('working_item_id');
             $table->date('start_date');
             $table->date('close_date');

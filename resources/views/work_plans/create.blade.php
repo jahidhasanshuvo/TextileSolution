@@ -10,7 +10,7 @@
                 </div>
                 <?php Session::put('message', null);?>
             @endif
-            <form action="{{route('work_plans.store',['oid'=>$oid])}}" method="post">
+            <form action="{{route('work_plans.store',['sid'=>$sid])}}" method="post">
                 <div class="card-body">
                     <h4 class="card-title">Work Plan</h4>
                     {{csrf_field()}}
@@ -49,7 +49,7 @@
                         <button type="submit" class="btn btn-primary">Submit</button>
                         <button type="reset" class="btn btn-warning">Reset</button>
                         <br>
-                        <a href="{{route('work_plans.index',['oid'=>$oid])}}" class="btn btn-block">Back to List</a>
+                        <a href="{{route('work_plans.index',['sid'=>$sid])}}" class="btn btn-block">Back to List</a>
                     </div>
                 </div>
             </form>

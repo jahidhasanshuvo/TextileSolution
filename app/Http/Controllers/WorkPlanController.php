@@ -13,12 +13,12 @@ class WorkPlanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($oid)
+    public function index($sid)
     {
-        $work_plans = WorkPlan::all()->where('order_id','=',$oid);
+        $work_plans = WorkPlan::all()->where('style_id','=',$sid);
         return view('work_plans.index')->with([
             'work_plans'=>$work_plans,
-            'oid'=>$oid
+            'sid'=>$sid
         ]);
     }
 
@@ -27,10 +27,10 @@ class WorkPlanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($oid)
+    public function create($sid)
     {
         return view('work_plans.create')->with([
-            'oid'=>$oid,
+            'sid'=>$sid,
             'working_items'=>WorkingItem::all()
         ]);
     }
@@ -41,10 +41,10 @@ class WorkPlanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,$oid)
+    public function store(Request $request,$sid)
     {
         $work_plan = new WorkPlan();
-        $work_plan->order_id = $oid;
+        $work_plan->style_id = $sid;
         $work_plan->working_item_id = $request->working_item_id;
         $work_plan->start_date=$request->start_date;
         $work_plan->close_date=$request->close_date;
@@ -53,7 +53,7 @@ class WorkPlanController extends Controller
         return redirect()->back()->with([
             'message'=> 'Work Plan Created Successfully',
             'status'=>'success',
-            'oid'=>$oid
+            'sid'=>$sid
         ]);
     }
 
@@ -74,13 +74,13 @@ class WorkPlanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($oid,$id)
+    public function edit($sid,$id)
     {
         $work_plan = WorkPlan::find($id);
         return view('work_plans.edit')->with([
             'work_plan'=>$work_plan,
             'working_items' => WorkingItem::all(),
-            'oid'=>$oid
+            'sid'=>$sid
         ]);
     }
 
@@ -91,7 +91,7 @@ class WorkPlanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$oid,$id)
+    public function update(Request $request,$sid,$id)
     {
         $work_plan=WorkPlan::find($id);
         $work_plan->working_item_id = $request->working_item_id;
@@ -99,10 +99,10 @@ class WorkPlanController extends Controller
         $work_plan->close_date=$request->close_date;
         $work_plan->remarks=$request->remarks;
         $work_plan->save();
-        return redirect(route('work_plans.index',['oid'=>$oid]))->with([
+        return redirect(route('work_plans.index',['sid'=>$sid]))->with([
             'message'=> 'Work Plan Updated Successfully',
             'status'=>'success',
-            'oid'=>$oid
+            'sid'=>$sid
         ]);
     }
 

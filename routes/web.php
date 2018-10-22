@@ -58,7 +58,7 @@ Route::resource('style/{sid}/size_colors','ColorStyleSizeController');
 
 //////////////////////// WorkPlan Controller/////////////////
 
-Route::resource('order/{oid}/work_plans','WorkPlanController');
+Route::resource('style/{sid}/work_plans','WorkPlanController');
 
 
 //////////////////Order Controller ////////////////////////

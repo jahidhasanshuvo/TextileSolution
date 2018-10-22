@@ -4,7 +4,7 @@
     <div class="card">
         <div class="card-body">
             <div class="col-md-12">
-                <a class="btn btn-success" href="{{route('work_plans.create',['oid'=>$oid])}}">New Work Plan</a>
+                <a class="btn btn-success" href="{{route('work_plans.create',['sid'=>$sid])}}">New Work Plan</a>
                 @if(Session::get('message'))
                     <div class="alert alert-{{Session::get('status')}} alert-dismissible">
                         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -31,9 +31,9 @@
                                 <td>{{$work_plan->close_date}}</td>
                                 <td>{{$work_plan->remarks}}</td>
                                 <td>
-                                    <a href="{{route('work_plans.edit',['id'=>$work_plan->id,'oid'=>$work_plan->order_id])}}"><i class="fas fa-edit"></i></a>
+                                    <a href="{{route('work_plans.edit',['id'=>$work_plan->id,'sid'=>$work_plan->style_id])}}"><i class="fas fa-edit"></i></a>
                                     <form style="display: inline;" method="post"
-                                          action="{{route('work_plans.destroy',['id'=>$work_plan->id,'oid'=>$work_plan->order_id])}}">
+                                          action="{{route('work_plans.destroy',['id'=>$work_plan->id,'sid'=>$work_plan->style_id])}}">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="delete_form_btn"
