@@ -10,7 +10,7 @@
                 <?php Session::put('message', null);?>
             @endif
             <a href="{{route('all_order')}}" class="btn btn-default">Back To order list</a>
-            <h2><a href="{{route('accessories.create',['oid'=>$oid])}}" class="btn btn-success">Add new
+            <h2><a href="{{route('accessories.create',['sid'=>$sid])}}" class="btn btn-success">Add new
                     Accessory</a></h2>
             <div class="table-responsive">
                 <table class="table table-striped table-bordered" id="zero_config">
@@ -36,9 +36,9 @@
                             <td>{{$accessory->supplier->name}}</td>
                             <td>
                                 <a class="btn btn-primary"
-                                   href="{{route('accessories.edit',['oid'=>$oid,'id'=>$accessory->id])}}">Edit</a> |
+                                   href="{{route('accessories.edit',['sid'=>$sid,'id'=>$accessory->id])}}">Edit</a> |
                                 <form style="display: inline;" method="post"
-                                      action="{{route('accessories.destroy',['oid'=>$oid,'id'=>$accessory->id])}}">
+                                      action="{{route('accessories.destroy',['sid'=>$sid,'id'=>$accessory->id])}}">
                                     @csrf
                                     @method('DELETE')
                                     <input type="submit" class="btn btn-danger delete_form_btn" value="Delete"/>

@@ -4,8 +4,10 @@
         <div class="card">
             <div class="card-body">
                 <table class="table table-hover">
-                    <h2><a class="btn btn-success" href="{{route('size_colors.index',['sid'=>$style->id])}}">Size
+                    <a class="btn btn-success" href="{{route('size_colors.index',['sid'=>$style->id])}}">Size
                             and Color</a></h2>
+                    <a class="btn btn-success" href="{{route('accessories.index',['sid'=>$style->id])}}" style="margin-left: 5px">Accessories</a>
+
                     <thead class="label-success"><h2>Style Details</h2></thead>
                     <tr>
                         <td>Style ID</td>

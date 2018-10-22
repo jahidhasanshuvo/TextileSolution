@@ -24,5 +24,9 @@ class Style extends Model
         return $this->hasMany(ColorStyle::class);
     }
 
+    public function styles()
+    {
+        return $this->hasMany(Style::class);
+    }
 
 }

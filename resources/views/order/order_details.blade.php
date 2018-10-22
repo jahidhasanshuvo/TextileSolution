@@ -5,7 +5,6 @@
             <div class="col-md-12">
                 <br class="col-md-6">
                     <a class="btn btn-success" href="{{route('styles.index',['oid'=>$order->id])}}">Styles</a>
-                    <a class="btn btn-success" href="{{route('accessories.index',['oid'=>$order->id])}}">Accessories</a>
                     <a class="btn btn-success" href="{{route('work_plans.index',['oid'=>$order->id])}}">Work Plan</a>
                     </br>
                     </br>

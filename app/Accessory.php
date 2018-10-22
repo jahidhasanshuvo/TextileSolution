@@ -15,7 +15,7 @@ class Accessory extends Model
         'goods_receive_date',
         'work_order_submit_date',
         'supplier_id',
-        'order_id',
+        'style_id',
     ];
 
     public function unit()
@@ -28,8 +28,8 @@ class Accessory extends Model
         return $this->belongsTo(Supplier::class);
     }
 
-    public function order()
+    public function style()
     {
-        return $this->belongsTo(Order::class);
+        return $this->belongsTo(Style::class);
     }
 }

@@ -82,7 +82,7 @@ Route::get('/inactive_supplier/{id}','SupplierController@inactive_supplier')->na
 
 
 //////////////////////////Accessory Controller ///////////////////
-Route::resource('order/{oid}/accessories','AccessoryController');
+Route::resource('style/{sid}/accessories','AccessoryController');
 
 ////////////Admin Controller///////////////////////////////////
 Route::get('/error','AdminController@error')->name('error');

@@ -14,10 +14,10 @@ class AccessoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($oid)
+    public function index($sid)
     {
-        $accessories = Accessory::all()->where('order_id', '=', $oid);
-        return view('accessories.index')->with(['accessories' => $accessories, 'oid' => $oid]);
+        $accessories = Accessory::all()->where('style_id', '=', $sid);
+        return view('accessories.index')->with(['accessories' => $accessories, 'sid' => $sid]);
     }
 
     /**
@@ -25,13 +25,13 @@ class AccessoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($oid)
+    public function create($sid)
     {
         return view('accessories.create')
             ->with([
                 'suppliers' => Supplier::all()->where('activity', '=', 1),
                 'units' => Unit::all(),
-                'oid' => $oid
+                'sid' => $sid
             ]);
     }
 
@@ -41,7 +41,7 @@ class AccessoryController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store($oid, Request $request)
+    public function store($sid, Request $request)
     {
         $accessory = new Accessory();
         $accessory->name = $request->name;
@@ -52,7 +52,7 @@ class AccessoryController extends Controller
         $accessory->goods_received_date = $request->goods_received_date;
         $accessory->work_order_submit_date = $request->work_order_submit_date;
         $accessory->supplier_id = $request->supplier_id;
-        $accessory->order_id = $oid;
+        $accessory->style_id = $sid;
         $accessory->save();
         return redirect()->back()
             ->with([
@@ -77,7 +77,7 @@ class AccessoryController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($oid, $id)
+    public function edit($sid, $id)
     {
         $accessory = Accessory::find($id);
         return view('accessories.edit')
@@ -85,7 +85,7 @@ class AccessoryController extends Controller
                 'accessory' => $accessory,
                 'suppliers' => Supplier::all()->where('activity', '=', 1),
                 'units' => Unit::all(),
-                'oid' => $oid
+                'sid' => $sid
             ]);
     }
 
@@ -96,7 +96,7 @@ class AccessoryController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update($oid, Request $request, $id)
+    public function update($sid, Request $request, $id)
     {
         $accessory = Accessory::find($id);
         $accessory->name = $request->name;
@@ -107,9 +107,9 @@ class AccessoryController extends Controller
         $accessory->goods_received_date = $request->goods_received_date;
         $accessory->work_order_submit_date = $request->work_order_submit_date;
         $accessory->supplier_id = $request->supplier_id;
-        $accessory->order_id = $oid;
+        $accessory->style_id = $sid;
         $accessory->save();
-        return redirect(route('accessories.index', ['oid' => $oid]))
+        return redirect(route('accessories.index', ['sid' => $sid]))
             ->with([
                 'message' => 'Accessories updated successfully!'
             ]);

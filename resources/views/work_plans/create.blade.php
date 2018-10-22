@@ -17,7 +17,7 @@
                     <div class="form-group row">
                         <label class="col-sm-3 text-right control-label col-form-label">Working Details: </label>
                         <div class="col-sm-9">
-                            <select name="working_item_id" class="form-control" required>
+                            <select name="working_item_id" class="form-control autodrop" required>
                                 <option value="">Select</option>
                                 @foreach($working_items as $working_item)
                                     <option value="{{$working_item->id}}">{{$working_item->name}}</option>
@@ -55,4 +55,11 @@
             </form>
         </div>
     </div>
+@endsection
+@section('page_script')
+    <script>
+        $(document).ready(function () {
+            $('.autodrop').select2();
+        });
+    </script>
 @endsection

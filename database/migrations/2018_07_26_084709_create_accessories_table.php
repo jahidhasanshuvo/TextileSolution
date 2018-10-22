@@ -23,7 +23,7 @@ class CreateAccessoriesTable extends Migration
             $table->date('goods_received_date')->nullable();
             $table->date('work_order_submit_date');
             $table->integer('supplier_id');
-            $table->integer('order_id');
+            $table->integer('style_id');
             $table->timestamps();
         });
     }

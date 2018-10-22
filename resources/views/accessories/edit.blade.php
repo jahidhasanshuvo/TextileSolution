@@ -13,7 +13,7 @@
                     <div class="card-body">
                         <div class="card-title"><h4>EDIT ACCESSORY</h4></div>
 
-                        <form class="form" action="{{route('accessories.update',['oid'=>$oid,'id'=>$accessory->id])}}"
+                        <form class="form" action="{{route('accessories.update',['sid'=>$sid,'id'=>$accessory->id])}}"
                               method="post">
                             @csrf
                             @method('PUT')
@@ -94,7 +94,7 @@
 
                                 <input type="submit" class="btn btn-success" value="UPDATE"/>
                                 <input type="reset" class="btn btn-danger" value="Reset"/>
-                                <h2 style="float: right"><a class="btn btn-default" href="{{route('accessories.index',['oid'=>$oid])}}">Back
+                                <h2 style="float: right"><a class="btn btn-default" href="{{route('accessories.index',['sid'=>$sid])}}">Back
                                         To
                                         List</a></h2>
                             </div>
