@@ -9,7 +9,7 @@
                 </div>
                 <?php Session::put('message',null);?>
             @endif
-            <form class="form-horizontal" action="{{route('save_buyer')}}" method="post">
+            <form class="form-horizontal" action="{{route('buyers.store')}}" method="post">
                 <div class="card-body">
                     <h4 class="card-title">Buyer Info</h4>
                 {{csrf_field()}}
