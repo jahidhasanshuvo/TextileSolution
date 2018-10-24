@@ -18,7 +18,6 @@ Route::get('/', function () {
 
 ///////////////////Buyer Controller////////////////////////
 
-Route::get('/ajax_buyer','BuyerController@ajax_buyer')->name('ajax_buyer');
 Route::resource('/buyers','BuyerController'); //->except('destroy');
 //Route::post('/buyers/{id}/destroy','BuyerController@destroy');
 //Route::get('/all_buyer','BuyerController@all_buyer')->name('all_buyer');
@@ -27,6 +26,7 @@ Route::resource('/buyers','BuyerController'); //->except('destroy');
 //Route::get('/edit_buyer/{id}','BuyerController@edit_buyer')->name('edit_buyer');
 //Route::post('/update_buyer/{id}','BuyerController@update_buyer')->name('update_buyer');
 //Route::get('/delete_buyer/{id}','BuyerController@delete_buyer')->name('delete_buyer');
+//Route::get('/ajax_buyer','BuyerController@ajax_buyer')->name('ajax_buyer');
 
 
 //////////////////////////Unit Controller //////////////////
@@ -35,13 +35,14 @@ Route::resource('/units','UnitController');
 
 ///////////////////Color Controller////////////////////////
 
-Route::get('/all_color','ColorController@all_color')->name('all_color');
-Route::get('/ajax_color','ColorController@ajax_color')->name('ajax_color');
-Route::get('/add_color','ColorController@add_color')->name('add_color');
-Route::post('/save_color','ColorController@save_color')->name('save_color');
-Route::get('/edit_color/{id}','ColorController@edit_color')->name('edit_color');
-Route::post('/update_color/{id}','ColorController@update_color')->name('update_color');
-Route::get('/delete_color/{id}','ColorController@delete_color')->name('delete_color');
+Route::resource('/colors','ColorController');
+//Route::get('/all_color','ColorController@all_color')->name('all_color');
+//Route::get('/ajax_color','ColorController@ajax_color')->name('ajax_color');
+//Route::get('/add_color','ColorController@add_color')->name('add_color');
+//Route::post('/save_color','ColorController@save_color')->name('save_color');
+//Route::get('/edit_color/{id}','ColorController@edit_color')->name('edit_color');
+//Route::post('/update_color/{id}','ColorController@update_color')->name('update_color');
+//Route::get('/delete_color/{id}','ColorController@delete_color')->name('delete_color');
 
 ///////////////////Size Controller////////////////////////
 

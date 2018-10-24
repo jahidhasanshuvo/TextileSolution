@@ -6,8 +6,9 @@
             <div class="card-body">
                 <div class="card-title"><h4>EDIT COLOR</h4></div>
 
-                <form method="post" action="{{route('update_color',['id'=>$color->id])}}">
-                    {{csrf_field()}}
+                <form method="post" action="{{route('colors.update',['id'=>$color->id])}}">
+                    @csrf
+                    @method('PUT')
                     <div class="form-group">
                         <label class="control-label">Name</label>
                         <div>
@@ -26,8 +27,8 @@
                             <input type="text" class="form-control" name="description" value="{{$color->description}}">
                         </div>
                     </div>
-                    <input type="submit" class="btn btn-success">
-                    <a href="{{route('all_color')}}" class="btn btn-default">Cancel</a>
+                    <input type="submit" class="btn btn-success" value="UPDATE">
+                    <a href="{{route('colors.index')}}" class="btn btn-default">Cancel</a>
                 </form>
             </div>
         </div>

@@ -264,7 +264,7 @@
                                                 href="{{route('buyers.index')}}" aria-expanded="false"><i
                                     class="mdi mdi-chart-bar"></i><span class="hide-menu">Buyer</span></a></li>
                     <li class="sidebar-item"><a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                                href="{{route('all_color')}}" aria-expanded="false"><i
+                                                href="{{route('colors.index')}}" aria-expanded="false"><i
                                     class="mdi mdi-chart-bubble"></i><span class="hide-menu">Color</span></a></li>
                     <li class="sidebar-item"><a class="sidebar-link waves-effect waves-dark sidebar-link"
                                                 href="{{route('all_size')}}" aria-expanded="false"><i
