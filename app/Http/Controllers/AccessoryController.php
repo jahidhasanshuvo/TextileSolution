@@ -17,6 +17,7 @@ class AccessoryController extends Controller
     public function index($sid)
     {
         $accessories = Accessory::all()->where('style_id', '=', $sid);
+//        dd($accessories);
         return view('accessories.index')->with(['accessories' => $accessories, 'sid' => $sid]);
     }
 

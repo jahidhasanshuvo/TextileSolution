@@ -45,14 +45,14 @@ Route::resource('/colors','ColorController');
 //Route::get('/delete_color/{id}','ColorController@delete_color')->name('delete_color');
 
 ///////////////////Size Controller////////////////////////
-
-Route::get('/all_size','SizeController@all_size')->name('all_size');
-Route::get('/ajax_size','SizeController@ajax_size')->name('ajax_size');
-Route::get('/add_size','SizeController@add_size')->name('add_size');
-Route::post('/save_size','SizeController@save_size')->name('save_size');
-Route::get('/edit_size/{id}','SizeController@edit_size')->name('edit_size');
-Route::post('/update_size/{id}','SizeController@update_size')->name('update_size');
-Route::get('/delete_size/{id}','SizeController@delete_size')->name('delete_size');
+Route::resource('/sizes','SizeController');
+//Route::get('/all_size','SizeController@all_size')->name('all_size');
+//Route::get('/ajax_size','SizeController@ajax_size')->name('ajax_size');
+//Route::get('/add_size','SizeController@add_size')->name('add_size');
+//Route::post('/save_size','SizeController@save_size')->name('save_size');
+//Route::get('/edit_size/{id}','SizeController@edit_size')->name('edit_size');
+//Route::post('/update_size/{id}','SizeController@update_size')->name('update_size');
+//Route::get('/delete_size/{id}','SizeController@delete_size')->name('delete_size');
 
 
 //////////////////////// SizeColor Controller/////////////////

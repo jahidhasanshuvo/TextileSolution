@@ -19,6 +19,7 @@ class SizeColorController extends Controller
         $size_colors =SizeColor::all()->where('style_id','=',$sid);
         return view('size_colors.index',['sid'=>$sid,'size_colors'=>$size_colors]);
     }
+    
 
     /**
      * Show the form for creating a new resource.

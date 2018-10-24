@@ -8,54 +8,54 @@ use Illuminate\Support\Facades\Session;
 
 class SizeController extends Controller
 {
-//    private $size;
+////    private $size;
+//
+//    public function __construct()
+//    {
+////        $this->size = new size();
+//    }
 
-    public function __construct()
-    {
-//        $this->size = new size();
-    }
-
-    public function all_size()
+    public function index()
     {
         $size = Size::all();
-        return view('size.all_size', ['sizes' => $size]);
+        return view('sizes.index', ['sizes' => $size]);
     }
 
-    public function add_size()
+    public function create()
     {
-        return view('size.add_size');
+        return view('sizes.create');
     }
 
-    public function save_size(Request $request)
+    public function store(Request $request)
     {
         $size = new Size();
         $size->name = $request->name;
         $size->description = $request->description;
         $size->save();
-        Session::put('message', 'size Added');
-        return redirect(route('add_size'));
+        Session::put('message', 'size Added successfully!');
+        return redirect(route('sizes.index'));
     }
 
-    public function edit_size($id)
+    public function edit($id)
     {
         $size = Size::find($id);
-        return view('size.edit_size', ['size' => $size]);
+        return view('sizes.edit', ['size' => $size]);
     }
 
-    public function update_size(Request $request,$id)
+    public function update(Request $request,$id)
     {
         $size = Size::find($id);
         $size->name = $request->name;
         $size->description = $request->description;
         $size->save();
         Session::put('message','size Updated Successfully');
-        return redirect(route('all_size'));
+        return redirect(route('sizes.index'));
     }
 
-    public function delete_size($id){
+    public function destroy($id){
         $size = Size::find($id);
         $size->delete();
         Session::put('message','size deleted successfully');
-        return redirect(route('all_size'));
+        return redirect(route('sizes.index'));
     }
 }

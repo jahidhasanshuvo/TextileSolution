@@ -267,7 +267,7 @@
                                                 href="{{route('colors.index')}}" aria-expanded="false"><i
                                     class="mdi mdi-chart-bubble"></i><span class="hide-menu">Color</span></a></li>
                     <li class="sidebar-item"><a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                                href="{{route('all_size')}}" aria-expanded="false"><i
+                                                href="{{route('sizes.index')}}" aria-expanded="false"><i
                                     class="mdi mdi-border-inside"></i><span class="hide-menu">Size</span></a></li>
                     <li class="sidebar-item"><a class="sidebar-link waves-effect waves-dark sidebar-link"
                                                 href="{{route('units.index')}}" aria-expanded="false"><i

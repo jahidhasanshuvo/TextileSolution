@@ -12,7 +12,7 @@
                         <?php Session::put('message', null)?>
                     </div>
                 @endif
-                <form method="post" action="{{route('save_size')}}">
+                <form method="post" action="{{route('sizes.store')}}">
                     {{csrf_field()}}
                     <div class="form-group">
                         <label class="control-label">Name</label>

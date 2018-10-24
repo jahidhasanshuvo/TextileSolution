@@ -39,6 +39,9 @@ class SupplierController extends Controller
     public function store(Request $request)
     {
         $supplier = new Supplier();
+//        $supplier = Supplier::create([
+//            'name' =>  $request->name,
+//        ]);
         $supplier->name = $request->name;
         $supplier->address = $request->address;
         $supplier->phone = $request->phone;

@@ -1,10 +1,10 @@
 @extends('admin_layout')
 @section('admin_content')
-    <div class="card">
-        <div class="card-body">
-            <div class="card-title"><h4>COLORS</h4></div>
-            <div class="col-md-12">
-                <h5><a class="btn btn-primary" href="{{route('colors.create')}}">ADD NEW COLOR</a></h5>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-title"><h4>SIZES</h4></div>
+                <h5><a class="btn btn-primary" href="{{route('sizes.create')}}">ADD NEW SIZE</a></h5>
                 @if(Session::get('message'))
                     <div class="alert-success">
                         {{Session::get('message')}}
@@ -12,28 +12,23 @@
                     </div>
                 @endif
                 <div class="table-responsive">
-                    <table class="table table-bordered dataTable" id="datatable">
+                    <table class="table table-hover table-striped" id="datatable">
                         <thead class="label-success">
-                        <th  width="10%">Id</th>
-                        <th  width="20%">Name</th>
-                        <th  width="20%">Var</th>
-                        <th  width="10%">Description</th>
-                        <th width="40%">Action</th>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th width="50%">Action</th>
                         </thead>
                         <tbody>
-
-                        @foreach($colors as $color)
+                        @foreach($sizes as $size)
                             <tr>
-                                <td>{{$color->id}}</td>
-                                <td>{{$color->name}}</td>
-                                <td>{{$color->var}}</td>
-                                <td>{{$color->description}}</td>
-
+                                <td>{{$size->id}}</td>
+                                <td>{{$size->name}}</td>
+                                <td>{{$size->description}}</td>
                                 <td>
-                                    <a href="{{route('colors.edit',['id'=>$color->id])}}"><i
-                                                class="fas fa-edit"></i></a>
+                                    <a href="{{route('sizes.edit',['id'=>$size->id])}}"><i class="fas fa-edit"></i></a>
                                     <form style="display: inline;" method="post"
-                                          action="{{route('colors.destroy',['id'=>$color->id])}}">
+                                          action="{{route('sizes.destroy',['id'=>$size->id])}}">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="delete_form_btn"
@@ -48,10 +43,8 @@
                 </div>
             </div>
         </div>
-
     </div>
 @endsection
-
 @section('page_script')
     <script type="text/javascript">
         $('#datatable').DataTable({
@@ -63,13 +56,13 @@
             "order": [[0, "asc"]],
             "buttons": [],
             "columnDefs": [
-                {"orderable": false, "searchable": false, "targets": 4},
-                {"searchable": false, "targets": 4}
+                {"orderable": false, "searchable": false, "targets": 3},
+                {"searchable": false, "targets": 3}
             ]
         });
-        // document.getElementById('datatable_filter').style.cssFloat = 'left';
-        // s = document.getElementById('datatable_paginate').style;
-        // s.marginLeft = "18%";
-        // s.marginRight = "100%";
+        document.getElementById('datatable_filter').style.cssFloat = 'left';
+        s=document.getElementById('datatable_paginate').style;
+        s.marginLeft="18%";
+        s.marginRight="100%";
     </script>
 @endsection
