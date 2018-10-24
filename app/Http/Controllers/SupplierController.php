@@ -50,7 +50,8 @@ class SupplierController extends Controller
         $supplier->save();
         return redirect()->back()
             ->with([
-                'message' => 'Suppliers Added Successfully'
+                'message' => 'Suppliers Added Successfully',
+                'status'   => 'success'
             ]);
     }
 
@@ -95,7 +96,8 @@ class SupplierController extends Controller
         $supplier->save();
         return redirect(route('suppliers.index'))
             ->with([
-                'message' => 'Suppliers Updated Successfully'
+                'message' => 'Suppliers Updated Successfully',
+                'status'   => 'success'
             ]);
     }
 
@@ -111,7 +113,8 @@ class SupplierController extends Controller
         $supplier->delete();
         return redirect()->back()
             ->with([
-                'message' => 'Suppliers Deleted Successfully'
+                'message' => 'Suppliers Deleted Successfully',
+                'status'   => 'success'
             ]);
     }
     public function active_supplier($id)
@@ -121,7 +124,8 @@ class SupplierController extends Controller
         $supplier->save();
         return redirect()->back()
             ->with([
-                'message' => 'Suppliers Activated Successfully'
+                'message' => 'Suppliers Activated Successfully',
+                'status'   => 'success'
             ]);
     }
     public function inactive_supplier($id)
@@ -131,7 +135,8 @@ class SupplierController extends Controller
         $supplier->save();
         return redirect()->back()
             ->with([
-                'message' => 'Suppliers Inactivated Successfully'
+                'message' => 'Suppliers Inactivated Successfully',
+                'status'   => 'success'
             ]);
     }
 
