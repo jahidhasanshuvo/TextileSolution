@@ -4,11 +4,14 @@
         <div class="card-body">
             <div class="card-title">Suppliers</div>
 
-            <?php
-            if(Session::get('message')){ ?>
-            <p class="alert-success">{{Session::get('message')}}</p>
-            <?php } Session::put('message', null);
-            ?>
+
+            @if(Session::get('message'))
+                <div class="alert alert-{{Session::get('status')}} alert-dismissible">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>{{Session::get('message')}}</strong>
+                </div>
+                <?php Session::put('message', null);?>
+            @endif
             <h2><a href="{{route('suppliers.create')}}" class="btn btn-primary">ADD NEW SUPPLIER</a></h2>
             <div class="table-responsive">
                 <table class="table table-striped table-bordered" id="datatable">
@@ -64,7 +67,7 @@
             "scrollCollapse": true,
             "destroy": true,
             "order": [[0, "asc"]],
-            "buttons": [          ],
+            "buttons": [],
             "columnDefs": [
                 {"orderable": false, "searchable": false, "targets": 5},
                 {"searchable": false, "targets": 4}

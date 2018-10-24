@@ -10,54 +10,72 @@ class ColorController extends Controller
 {
 //    private $color;
 
-    public function __construct()
-    {
-//        $this->color = new Color();
-    }
+//    public function __construct()
+//    {
+////        $this->color = new Color();
+//    }
 
-    public function all_color()
+    public function index()
     {
         $color = Color::all();
-        return view('color.all_color', ['colors' => $color]);
+        return view('colors.index', ['colors' => $color]);
     }
 
-    public function add_color()
+    public function create()
     {
-        return view('color.add_color');
+        return view('colors.create');
     }
 
-    public function save_color(Request $request)
+    public function store(Request $request)
     {
         $color =new Color();
         $color->name = $request->name;
         $color->var = $request->var;
         $color->description = $request->description;
         $color->save();
-        Session::put('message', 'Color Added');
-        return redirect(route('add_color'));
+        return redirect()->back()
+            ->with([
+                'message' => 'Color stored Successfully',
+                'status' => 'success'
+            ]);
     }
 
-    public function edit_color($id)
+    public function show($id)
+    {
+        //
+    }
+
+
+    public function edit($id)
     {
         $color = Color::find($id);
-        return view('color.edit_color', ['color' => $color]);
+        return view('colors.edit')
+            ->with(['color' => $color]);
+
     }
 
-    public function update_color(Request $request,$id)
+    public function update(Request $request,$id)
     {
         $color = Color::find($id);
         $color->name = $request->name;
         $color->var = $request->var;
         $color->description = $request->description;
         $color->save();
-        Session::put('message','Color Updated Successfully');
-        return redirect(route('all_color'));
+
+        return redirect(route('colors.index'))
+            ->with([
+                'message' => 'Color updated successfully!',
+                'status' => 'success'
+            ]);
     }
 
-    public function delete_color($id){
+    public function destroy($id){
         $color = Color::find($id);
         $color->delete();
-        Session::put('message','Color deleted successfully');
-        return redirect(route('all_color'));
+        return redirect()->back()
+            ->with([
+                'message' => 'Color Deleted Successfully',
+                'status' => 'success'
+            ]);
     }
 }

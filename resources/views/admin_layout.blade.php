@@ -261,13 +261,13 @@
                                                 href="index.html" aria-expanded="false"><i
                                     class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span></a></li>
                     <li class="sidebar-item"><a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                                href="{{route('all_buyer')}}" aria-expanded="false"><i
+                                                href="{{route('buyers.index')}}" aria-expanded="false"><i
                                     class="mdi mdi-chart-bar"></i><span class="hide-menu">Buyer</span></a></li>
                     <li class="sidebar-item"><a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                                href="{{route('all_color')}}" aria-expanded="false"><i
+                                                href="{{route('colors.index')}}" aria-expanded="false"><i
                                     class="mdi mdi-chart-bubble"></i><span class="hide-menu">Color</span></a></li>
                     <li class="sidebar-item"><a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                                href="{{route('all_size')}}" aria-expanded="false"><i
+                                                href="{{route('sizes.index')}}" aria-expanded="false"><i
                                     class="mdi mdi-border-inside"></i><span class="hide-menu">Size</span></a></li>
                     <li class="sidebar-item"><a class="sidebar-link waves-effect waves-dark sidebar-link"
                                                 href="{{route('units.index')}}" aria-expanded="false"><i
@@ -386,7 +386,7 @@
     $(document).on("click", "#delete", function (e) {
         e.preventDefault();
         var link = $(this).attr("href");
-        bootbox.confirm("Are you want delete!!", function (confirmed) {
+        bootbox.confirm("Do you want to delete!!", function (confirmed) {
             if (confirmed) {
                 window.location.href = link;
             }
@@ -396,7 +396,7 @@
     $('.delete_form_btn').on('click', function (e) {
         e.preventDefault();
         that = this;
-        bootbox.confirm("Are you want delete!!", function (confirmed) {
+        bootbox.confirm("Do you want to delete!!", function (confirmed) {
             if (confirmed) {
                 $(that).closest('form').submit();
             }

@@ -6,8 +6,9 @@
             <div class="card-body">
                 <div class="card-title"><h4>EDIT SIZE</h4></div>
 
-                <form method="post" action="{{route('update_size',['id'=>$size->id])}}">
-                    {{csrf_field()}}
+                <form method="post" action="{{route('sizes.update',['id'=>$size->id])}}">
+                    @csrf
+                    @method('PUT')
                     <div class="form-group">
                         <label class="control-label">Name</label>
                         <div>
@@ -21,7 +22,7 @@
                         </div>
                     </div>
                     <input type="submit" class="btn btn-success" value="SUBMIT">
-                    <a class="btn btn-default" href="{{route('all_size')}}">Cancel</a>
+                    <a class="btn btn-default" href="{{route('sizes.index')}}">Cancel</a>
                 </form>
             </div>
         </div>

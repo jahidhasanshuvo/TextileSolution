@@ -11,7 +11,7 @@
                         <?php Session::put('message', null)?>
                     </div>
                 @endif
-                <form method="post" action="{{route('save_color')}}">
+                <form method="post" action="{{route('colors.store')}}">
                     {{csrf_field()}}
                     <div class="form-group">
                         <label class="control-label">Name</label>
