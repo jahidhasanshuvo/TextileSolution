@@ -9,7 +9,7 @@
             <?php } Session::put('message', null);
             ?>
             <h6><a href="{{route('styles.create', ['oid' => $order_id])}}" class="btn btn-success">Create new style</a>
-            <a href="{{route('all_order')}}" class="btn btn-default">Back To order list</a></h6>
+            <a href="{{route('orders.index')}}" class="btn btn-default">Back To order list</a></h6>
             <div class="table-responsive">
                 <table class="table table-striped table-bordered table-hover" id="datatable">
                     <thead class="label-success" style="color: white">
