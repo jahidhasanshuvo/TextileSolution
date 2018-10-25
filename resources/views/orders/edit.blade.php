@@ -5,8 +5,10 @@
             <div class="card-body">
                 <div class="card-title"><h4>EDIT ORDER</h4></div>
 
-                <form action="{{route('update_order',['id'=>$order->id])}}" method="post">
-                    {{csrf_field()}}
+                <form action="{{route('orders.update',['id'=>$order->id])}}" method="post">
+                    @csrf
+                    @method('PUT')
+
                     <div class="form-group">
                         <label class="control-label"> Order Program Code</label>
                         <div>
@@ -34,7 +36,7 @@
                     </div>
 
                     <input type="submit" class="btn btn-success" value="SUBMIT">
-                    <a href="{{route('all_order')}}" class="btn btn-default">Cancel</a>
+                    <a href="{{route('orders.index')}}" class="btn btn-default">Cancel</a>
                 </form>
             </div>
         </div>

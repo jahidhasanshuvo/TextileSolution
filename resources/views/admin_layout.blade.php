@@ -273,7 +273,7 @@
                                                 href="{{route('units.index')}}" aria-expanded="false"><i
                                     class="mdi mdi-blur-linear"></i><span class="hide-menu">Unit</span></a></li>
                     <li class="sidebar-item"><a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                                href="{{route('all_order')}}" aria-expanded="false"><i
+                                                href="{{route('orders.index')}}" aria-expanded="false"><i
                                     class="mdi mdi-relative-scale"></i><span class="hide-menu">Order</span></a></li>
 
                     <li class="sidebar-item"><a class="sidebar-link waves-effect waves-dark sidebar-link"
