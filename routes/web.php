@@ -65,13 +65,15 @@ Route::resource('style/{sid}/work_plans','WorkPlanController');
 
 
 //////////////////Order Controller ////////////////////////
-Route::get('/all_order','OrderController@all_order')->name('all_order');
-Route::get('/ajaxOrder','OrderController@ajaxOrder')->name('ajaxOrder');
-Route::get('/add_order','OrderController@add_order')->name('add_order');
-Route::post('/save_order','OrderController@save_order')->name('save_order');
-Route::get('/edit_order/{id}','OrderController@edit_order')->name('edit_order');
-Route::post('/update_order/{id}','OrderController@update_order')->name('update_order');
-Route::get('/order_details/{id}','OrderController@order_details')->name('order_details');
+
+Route::resource('orders','OrderController');
+//Route::get('/all_order','OrderController@all_order')->name('all_order');
+//Route::get('/ajaxOrder','OrderController@ajaxOrder')->name('ajaxOrder');
+//Route::get('/add_order','OrderController@add_order')->name('add_order');
+//Route::post('/save_order','OrderController@save_order')->name('save_order');
+//Route::get('/edit_order/{id}','OrderController@edit_order')->name('edit_order');
+//Route::post('/update_order/{id}','OrderController@update_order')->name('update_order');
+//Route::get('/order_details/{id}','OrderController@order_details')->name('order_details');
 
 
 //////////////////////////Style Controller ///////////////////

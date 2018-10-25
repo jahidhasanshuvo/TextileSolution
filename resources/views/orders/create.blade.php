@@ -9,7 +9,7 @@
                 <p class="alert-success">{{Session::get('message')}}</p>
                 <?php } Session::put('message', null);
                 ?>
-                <form action="{{route('save_order')}}" method="post">
+                <form action="{{route('orders.store')}}" method="post">
                     {{csrf_field()}}
                     <div class="form-group">
                         <label class="control-label"> Order Program Code</label>
