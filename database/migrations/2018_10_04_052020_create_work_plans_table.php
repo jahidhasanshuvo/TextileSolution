@@ -20,6 +20,7 @@ class CreateWorkPlansTable extends Migration
             $table->date('start_date');
             $table->date('close_date');
             $table->string('remarks')->nullable();
+            $table->unique(['style_id','working_item_id']);
             $table->timestamps();
         });
     }

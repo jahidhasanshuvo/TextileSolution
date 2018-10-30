@@ -9,7 +9,7 @@
                 </div>
                 <?php Session::put('message', null);?>
             @endif
-            <a href="{{route('all_order')}}" class="btn btn-default">Back To order list</a>
+            <a href="{{route('styles.index',['oid'=>$oid])}}" class="btn btn-default">Back To style list</a>
             <h2><a href="{{route('accessories.create',['sid'=>$sid])}}" class="btn btn-success">Add new
                     Accessory</a></h2>
             <div class="table-responsive">

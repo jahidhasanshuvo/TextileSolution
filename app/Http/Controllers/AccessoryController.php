@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Accessory;
+use App\Style;
 use App\Supplier;
 use App\Unit;
 use Illuminate\Http\Request;
@@ -18,7 +19,9 @@ class AccessoryController extends Controller
     {
         $accessories = Accessory::all()->where('style_id', '=', $sid);
 //        dd($accessories);
-        return view('accessories.index')->with(['accessories' => $accessories, 'sid' => $sid]);
+        return view('accessories.index')->with([
+            'accessories' => $accessories, 'sid' => $sid,'oid'=>Style::find($sid)->order_id
+        ]);
     }
 
     /**
@@ -109,6 +112,9 @@ class AccessoryController extends Controller
         $accessory->work_order_submit_date = $request->work_order_submit_date;
         $accessory->supplier_id = $request->supplier_id;
         $accessory->style_id = $sid;
+//        $change=$accessory->getDirty();
+//        echo json_encode($change);
+//        exit();
         $accessory->save();
         return redirect(route('accessories.index', ['sid' => $sid]))
             ->with([
