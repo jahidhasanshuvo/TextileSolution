@@ -28,34 +28,74 @@ class SizeController extends Controller
 
     public function store(Request $request)
     {
-        $size = new Size();
-        $size->name = $request->name;
-        $size->description = $request->description;
-        $size->save();
-        Session::put('message', 'size Added successfully!');
-        return redirect(route('sizes.index'));
+        try {
+            $size = new Size();
+            $size->name = $request->name;
+            $size->description = $request->description;
+            $size->save();
+        } catch (\Exception $e) {
+            Log::debug($e->getMessage());
+            return redirect()->back()->with([
+                'message' => $e->getMessage(),
+                'status' => 'danger'
+            ]);
+        }
+//        Session::put('message', 'size Added successfully!');
+        return redirect(route('sizes.index'))->with([
+            'message' => 'Size Added Successfully!'
+        ]);
     }
 
     public function edit($id)
     {
-        $size = Size::find($id);
+        try {
+            $size = Size::find($id);
+        } catch (\Exception $e) {
+            Log::debug($e->getMessage());
+            return redirect()->back()->with([
+                'message' => $e->getMessage(),
+                'status' => 'danger'
+            ]);
+        }
         return view('sizes.edit', ['size' => $size]);
     }
 
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
-        $size = Size::find($id);
-        $size->name = $request->name;
-        $size->description = $request->description;
-        $size->save();
-        Session::put('message','size Updated Successfully');
-        return redirect(route('sizes.index'));
+        try {
+            $size = Size::find($id);
+            $size->name = $request->name;
+            $size->description = $request->description;
+            $size->save();
+        } catch (\Exception $e) {
+            Log::debug($e->getMessage());
+            return redirect()->back()->with([
+                'message' => $e->getMessage(),
+                'status' => 'danger'
+            ]);
+        }
+//        Session::put('message', 'size Updated Successfully');
+        return redirect(route('sizes.index'))->with([
+            'message' => 'Size Updated Successfully!'
+        ]);
     }
 
-    public function destroy($id){
-        $size = Size::find($id);
-        $size->delete();
-        Session::put('message','size deleted successfully');
-        return redirect(route('sizes.index'));
+    public function destroy($id)
+    {
+        try {
+            $size = Size::find($id);
+            $size->delete();
+        } catch (\Exception $e) {
+            Log::debug($e->getMessage());
+            return redirect()->back()->with([
+                'message' => $e->getMessage(),
+                'status' => 'danger'
+            ]);
+        }
+//        Session::put('message', 'size deleted successfully');
+        return redirect(route('sizes.index'))->with([
+            'message' => 'Size Deleted Successfully!',
+            'status'  => 'success'
+        ]);
     }
 }

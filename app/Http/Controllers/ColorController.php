@@ -28,11 +28,19 @@ class ColorController extends Controller
 
     public function store(Request $request)
     {
-        $color =new Color();
-        $color->name = $request->name;
-        $color->var = $request->var;
-        $color->description = $request->description;
-        $color->save();
+        try {
+            $color = new Color();
+            $color->name = $request->name;
+            $color->var = $request->var;
+            $color->description = $request->description;
+            $color->save();
+        } catch (\Exception $e) {
+            Log::debug($e->getMessage());
+            return redirect()->back()->with([
+                'message' => $e->getMessage(),
+                'status' => 'danger'
+            ]);
+        }
         return redirect()->back()
             ->with([
                 'message' => 'Color stored Successfully',
@@ -48,20 +56,35 @@ class ColorController extends Controller
 
     public function edit($id)
     {
-        $color = Color::find($id);
+        try {
+            $color = Color::find($id);
+        } catch (\Exception $e) {
+            Log::debug($e->getMessage());
+            return redirect()->back()->with([
+                'message' => $e->getMessage(),
+                'status' => 'danger'
+            ]);
+        }
         return view('colors.edit')
             ->with(['color' => $color]);
 
     }
 
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
-        $color = Color::find($id);
-        $color->name = $request->name;
-        $color->var = $request->var;
-        $color->description = $request->description;
-        $color->save();
-
+        try {
+            $color = Color::find($id);
+            $color->name = $request->name;
+            $color->var = $request->var;
+            $color->description = $request->description;
+            $color->save();
+        } catch (\Exception $e) {
+            Log::debug($e->getMessage());
+            return redirect()->back()->with([
+                'message' => $e->getMessage(),
+                'status' => 'danger'
+            ]);
+        }
         return redirect(route('colors.index'))
             ->with([
                 'message' => 'Color updated successfully!',
@@ -69,9 +92,18 @@ class ColorController extends Controller
             ]);
     }
 
-    public function destroy($id){
-        $color = Color::find($id);
-        $color->delete();
+    public function destroy($id)
+    {
+        try {
+            $color = Color::find($id);
+            $color->delete();
+        } catch (\Exception $e) {
+            Log::debug($e->getMessage());
+            return redirect()->back()->with([
+                'message' => $e->getMessage(),
+                'status' => 'danger'
+            ]);
+        }
         return redirect()->back()
             ->with([
                 'message' => 'Color Deleted Successfully',

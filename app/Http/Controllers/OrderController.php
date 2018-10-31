@@ -23,7 +23,7 @@ class OrderController extends Controller
     public function index()
     {
         return view('orders.index')->with([
-            'orders'=>Order::all()
+            'orders' => Order::all()
         ]);
     }
 //
@@ -62,29 +62,56 @@ class OrderController extends Controller
 
     public function store(Request $request)
     {
-        $order = new Order();
-        $order->program_code = $request->program_code;
-        $order->buyer_id = $request->buyer_id;
-        $order->date = $request->date;
-        $order->save();
-        Session::put('message', 'Order Stored Successfully');
-        return redirect(route('orders.create'));
+        try {
+            $order = new Order();
+            $order->program_code = $request->program_code;
+            $order->buyer_id = $request->buyer_id;
+            $order->date = $request->date;
+            $order->save();
+        } catch (\Exception $e) {
+            Log::debug($e->getMessage());
+            return redirect()->back()->with([
+                'message' => $e->getMessage(),
+                'status' => 'danger'
+            ]);
+        }
+//        Session::put('message', 'Order Stored Successfully');
+        return redirect(route('orders.create'))->with([
+            'message' => 'Order Stored Successfully!',
+            'status' => 'success'
+        ]);
     }
 
     public function edit($id)
     {
-        $order = Order::find($id);
-        $buyers = Buyer::all();
+        try {
+            $order = Order::find($id);
+            $buyers = Buyer::all();
+        } catch (\Exception $e) {
+            Log::debug($e->getMessage());
+            return redirect()->back()->with([
+                'message' => $e->getMessage(),
+                'status' => 'danger'
+            ]);
+        }
         return view('orders.edit', ['order' => $order, 'buyers' => $buyers]);
     }
 
     public function update(Request $request, $id)
     {
-        $order = Order::find($id);
-        $order->program_code = $request->program_code;
-        $order->buyer_id = $request->buyer_id;
-        $order->date = $request->date;
-        $order->save();
+        try {
+            $order = Order::find($id);
+            $order->program_code = $request->program_code;
+            $order->buyer_id = $request->buyer_id;
+            $order->date = $request->date;
+            $order->save();
+        } catch (\Exception $e) {
+            Log::debug($e->getMessage());
+            return redirect()->back()->with([
+                'message' => $e->getMessage(),
+                'status' => 'danger'
+            ]);
+        }
         return redirect(route('orders.index'))->with([
             'message' => 'Order Updated Successfully',
             'status' => 'success'
@@ -93,11 +120,19 @@ class OrderController extends Controller
 
     public function destroy($id)
     {
-        $order = Order::find($id);
-        $order->delete();
+        try {
+            $order = Order::find($id);
+            $order->delete();
+        } catch (\Exception $e) {
+            Log::debug($e->getMessage());
+            return redirect()->back()->with([
+                'message' => $e->getMessage(),
+                'status' => 'danger'
+            ]);
+        }
         return redirect(route('orders.index'))->with([
             'message' => 'Order Deleted Successfully',
             'status' => 'success'
-    ]);
+        ]);
     }
 }

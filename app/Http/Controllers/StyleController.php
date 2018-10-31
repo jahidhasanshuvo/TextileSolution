@@ -16,10 +16,10 @@ class StyleController extends Controller
 
     public function index($oid)
     {
-        $style = Style::all()->where('order_id','=',$oid);
+        $style = Style::all()->where('order_id', '=', $oid);
         return view('styles.index',
             [
-                'styles'=>$style,
+                'styles' => $style,
                 'order_id' => $oid
             ]
         );
@@ -40,75 +40,117 @@ class StyleController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, $oid)
     {
-        $style = new Style();
-        $style->style_no = $request->style_no;
-        $style->art_no = $request->art_no;
-        $style->description = $request->description;
-        $style->qty = $request->qty;
-        $style->order_id =$oid;
-        $style->save();
-        Session::put('message','Style Added');
-        return redirect(route('styles.index',['oid'=>$oid]));
+        try {
+            $style = new Style();
+            $style->style_no = $request->style_no;
+            $style->art_no = $request->art_no;
+            $style->description = $request->description;
+            $style->qty = $request->qty;
+            $style->order_id = $oid;
+            $style->save();
+        } catch (\Exception $e) {
+            Log::debug($e->getMessage());
+            return redirect()->back()->with([
+                'message' => $e->getMessage(),
+                'status' => 'danger'
+            ]);
+        }
+//        Session::put('message', 'Style Added');
+        return redirect(route('styles.index', ['oid' => $oid]))->with([
+            'message' => 'Style Added Successfully!',
+            'status' => 'success'
+        ]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($oid, $id)
     {
-        $style = Style::find($id);
-        return view('styles.details',['style'=>$style,'oid'=>$oid]);
+        try {
+            $style = Style::find($id);
+        } catch (\Exception $e) {
+            Log::debug($e->getMessage());
+            return redirect()->back()->with([
+                'message' => $e->getMessage(),
+                'status' => 'danger'
+            ]);
+        }
+        return view('styles.details', ['style' => $style, 'oid' => $oid]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($oid,$id)
+    public function edit($oid, $id)
     {
-        $style= Style::find($id);
-        return view('styles.edit',['style'=>$style,'oid'=>$oid]);
+        try {
+            $style = Style::find($id);
+        } catch (\Exception $e) {
+            Log::debug($e->getMessage());
+            return redirect()->back()->with([
+                'message' => $e->getMessage(),
+                'status' => 'danger'
+            ]);
+        }
+        return view('styles.edit', ['style' => $style, 'oid' => $oid]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update($oid,Request $request, $id)
+    public function update($oid, Request $request, $id)
     {
-        $style = Style::find($id);
-        $style->style_no =$request->style_no;
-        $style->art_no =$request->art_no;
-        $style->description =$request->description;
-        $style->qty =$request->qty;
-        $style->save();
-        return redirect(route('styles.index',['oid'=>$oid]))
-            ->with([
-               'message' =>'Style Updated Successfully'
+        try {
+            $style = Style::find($id);
+            $style->style_no = $request->style_no;
+            $style->art_no = $request->art_no;
+            $style->description = $request->description;
+            $style->qty = $request->qty;
+            $style->save();
+        } catch (\Exception $e) {
+            Log::debug($e->getMessage());
+            return redirect()->back()->with([
+                'message' => $e->getMessage(),
+                'status' => 'danger'
             ]);
+        }
+        return redirect(route('styles.index', ['oid' => $oid]))->with([
+            'message' => 'Style Updated Successfully',
+            'status' => 'success'
+        ]);
     }
 
-    public function destroy($oid ,$id)
+    public function destroy($oid, $id)
     {
-        $style = Style::find($id);
-        $style->delete();
-        return redirect()->back()->with(
-            [
-                'message' => 'Styles Deleted Successfully'
-            ]
-        );
+        try {
+            $style = Style::find($id);
+            $style->delete();
+        } catch (\Exception $e) {
+            Log::debug($e->getMessage());
+            return redirect()->back()->with([
+                'message' => $e->getMessage(),
+                'status' => 'danger'
+            ]);
+        }
+        return redirect()->back()->with([
+                'message' => 'Style Deleted Successfully!',
+                'status'  => 'success'
+            ]);
     }
 }

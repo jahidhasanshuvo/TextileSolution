@@ -4,18 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Buyer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
+use Mockery\Exception;
 use Yajra\DataTables\DataTables;
 
 class BuyerController extends Controller
 {
 //    private $buyers;
 
-      public function index()
-      {
-          $buyer= Buyer::all();
-          return view('buyers.index',['buyers'=>$buyer]);
-      }
+    public function index()
+    {
+        $buyer = Buyer::all();
+        return view('buyers.index', ['buyers' => $buyer]);
+    }
 //    public function __construct()
 //    {
 ////        $this->buyers = new Buyer();
@@ -46,18 +48,26 @@ class BuyerController extends Controller
 
     public function store(Request $request)
     {
-        $buyer = new Buyer();
-        $buyer->name = $request->name;
-        $buyer->code = $request->code;
-        $buyer->season = $request->season;
-        $buyer->brand = $request->brand;
-        $buyer->activity = $request->activity;
-        $buyer->email = $request->email;
-        $buyer->address = $request->address;
-        $buyer->contact = $request->contact;
-        $buyer->save();
+        try {
+            $buyer = new Buyer();
+            $buyer->name = $request->name;
+            $buyer->code = $request->code;
+            $buyer->season = $request->season;
+            $buyer->brand = $request->brand;
+            $buyer->activity = $request->activity;
+            $buyer->email = $request->email;
+            $buyer->address = $request->address;
+            $buyer->contact = $request->contact;
+            $buyer->save();
+        } catch (\Exception $e) {
+            Log::debug($e->getMessage());
+            return redirect()->back()->with([
+                'message' => $e->getMessage(),
+                'status' => 'danger'
+            ]);
+        }
         return redirect()->back()->with([
-           'message' =>'Buyer Information Added Successfully!',
+            'message' => 'Buyer Information Added Successfully!',
             'status' => 'success'
         ]);
 
@@ -65,26 +75,42 @@ class BuyerController extends Controller
 
     public function edit($id)
     {
-        $buyer = Buyer::find($id);
+        try {
+            $buyer = Buyer::find($id);
+        } catch (\Exception $e) {
+            Log::debug($e->getMessage());
+            return redirect()->back()->with([
+                'message' => $e->getMessage(),
+                'status' => 'danger'
+            ]);
+        }
         return view('buyers.edit', ['buyer' => $buyer]);
 
     }
 
     public function update(Request $request, $id)
     {
-        $buyer = Buyer::find($id);
-        $buyer->name = $request->name;
-        $buyer->code = $request->code;
-        $buyer->season = $request->season;
-        $buyer->brand = $request->brand;
-        $buyer->activity = $request->activity;
-        $buyer->email = $request->email;
-        $buyer->address = $request->address;
-        $buyer->contact = $request->contact;
+        try {
+            $buyer = Buyer::find($id);
+            $buyer->name = $request->name;
+            $buyer->code = $request->code;
+            $buyer->season = $request->season;
+            $buyer->brand = $request->brand;
+            $buyer->activity = $request->activity;
+            $buyer->email = $request->email;
+            $buyer->address = $request->address;
+            $buyer->contact = $request->contact;
 
-        $buyer->save();
+            $buyer->save();
+        } catch (\Exception $e) {
+            Log::debug($e->getMessage());
+            return redirect()->back()->with([
+                'message' => $e->getMessage(),
+                'status' => 'danger'
+            ]);
+        }
         return redirect(route('buyers.index'))->with([
-            'message' =>'Buyer Information Updated Successfully!',
+            'message' => 'Buyer Information Updated Successfully!',
             'status' => 'success'
         ]);
 
@@ -92,10 +118,18 @@ class BuyerController extends Controller
 
     public function destroy($id)
     {
-        $buyer = Buyer::find($id);
-        $buyer->delete();
-        Session::put('message', 'Buyer deleted successfully!');
+        try {
+            $buyer = Buyer::find($id);
+            $buyer->delete();
+        } catch (\Exception $e) {
+            Log::debug($e->getMessage());
+            return redirect()->back()->with([
+                'message' => $e->getMessage(),
+                'status' => 'danger'
+            ]);
+        }
         return redirect(route('buyers.index'))->with([
+            'message' => 'Buyer Deleted Successfully!',
             'status' => 'success']);
     }
 }

@@ -38,20 +38,28 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        $supplier = new Supplier();
+        try {
+            $supplier = new Supplier();
 //        $supplier = Supplier::create([
 //            'name' =>  $request->name,
 //        ]);
-        $supplier->name = $request->name;
-        $supplier->address = $request->address;
-        $supplier->phone = $request->phone;
-        $supplier->mobile = $request->mobile;
-        $supplier->activity = $request->activity?1:0;
-        $supplier->save();
+            $supplier->name = $request->name;
+            $supplier->address = $request->address;
+            $supplier->phone = $request->phone;
+            $supplier->mobile = $request->mobile;
+            $supplier->activity = $request->activity ? 1 : 0;
+            $supplier->save();
+        } catch (\Exception $e) {
+            Log::debug($e->getMessage());
+            return redirect()->back()->with([
+                'message' => $e->getMessage(),
+                'status' => 'danger'
+            ]);
+        }
         return redirect()->back()
             ->with([
                 'message' => 'Suppliers Added Successfully',
-                'status'   => 'success'
+                'status' => 'success'
             ]);
     }
 
@@ -74,7 +82,15 @@ class SupplierController extends Controller
      */
     public function edit($id)
     {
-        $supplier = Supplier::find($id);
+        try {
+            $supplier = Supplier::find($id);
+        } catch (\Exception $e) {
+            Log::debug($e->getMessage());
+            return redirect()->back()->with([
+                'message' => $e->getMessage(),
+                'status' => 'danger'
+            ]);
+        }
         return view('suppliers.edit')
             ->with(['supplier' => $supplier]);
     }
@@ -88,16 +104,24 @@ class SupplierController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $supplier = Supplier::find($id);
-        $supplier->name = $request->name;
-        $supplier->address = $request->address;
-        $supplier->phone = $request->phone;
-        $supplier->mobile = $request->mobile;
-        $supplier->save();
+        try {
+            $supplier = Supplier::find($id);
+            $supplier->name = $request->name;
+            $supplier->address = $request->address;
+            $supplier->phone = $request->phone;
+            $supplier->mobile = $request->mobile;
+            $supplier->save();
+        } catch (\Exception $e) {
+            Log::debug($e->getMessage());
+            return redirect()->back()->with([
+                'message' => $e->getMessage(),
+                'status' => 'danger'
+            ]);
+        }
         return redirect(route('suppliers.index'))
             ->with([
                 'message' => 'Suppliers Updated Successfully',
-                'status'   => 'success'
+                'status' => 'success'
             ]);
     }
 
@@ -109,34 +133,60 @@ class SupplierController extends Controller
      */
     public function destroy($id)
     {
-        $supplier = Supplier::find($id);
-        $supplier->delete();
+        try {
+            $supplier = Supplier::find($id);
+            $supplier->delete();
+        } catch (\Exception $e) {
+            Log::debug($e->getMessage());
+            return redirect()->back()->with([
+                'message' => $e->getMessage(),
+                'status' => 'danger'
+            ]);
+        }
         return redirect()->back()
             ->with([
                 'message' => 'Suppliers Deleted Successfully',
-                'status'   => 'success'
+                'status' => 'success'
             ]);
     }
+
     public function active_supplier($id)
     {
-        $supplier = Supplier::find($id);
-        $supplier->activity = 1;
-        $supplier->save();
+        try {
+            $supplier = Supplier::find($id);
+            $supplier->activity = 1;
+            $supplier->save();
+        } catch (\Exception $e) {
+            Log::debug($e->getMessage());
+            return redirect()->back()->with([
+                'message' => $e->getMessage(),
+                'status' => 'danger'
+            ]);
+        }
         return redirect()->back()
             ->with([
                 'message' => 'Suppliers Activated Successfully',
-                'status'   => 'success'
+                'status' => 'success'
             ]);
     }
+
     public function inactive_supplier($id)
     {
-        $supplier = Supplier::find($id);
-        $supplier->activity = 0;
-        $supplier->save();
+        try {
+            $supplier = Supplier::find($id);
+            $supplier->activity = 0;
+            $supplier->save();
+        } catch (\Exception $e) {
+            Log::debug($e->getMessage());
+            return redirect()->back()->with([
+                'message' => $e->getMessage(),
+                'status' => 'danger'
+            ]);
+        }
         return redirect()->back()
             ->with([
                 'message' => 'Suppliers Inactivated Successfully',
-                'status'   => 'success'
+                'status' => 'success'
             ]);
     }
 

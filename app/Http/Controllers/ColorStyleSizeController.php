@@ -18,7 +18,7 @@ class ColorStyleSizeController extends Controller
     public function index($sid)
     {
         $styles = Style::where('id', $sid)->with('color_styles.sizes')->first();
-      //  dd($styles->color_styles->first()->colors->name);
+        //  dd($styles->color_styles->first()->colors->name);
         return view('color_style_size.index')->with([
             'sid' => $sid,
             'oid' => $styles->order_id,
@@ -78,7 +78,7 @@ class ColorStyleSizeController extends Controller
                 ->with([
 
                     'status' => 'failed',
-                    'message' => 'error occures, errors: ' . $exception->getMessage(),
+                    'message' => 'error occurs, errors: ' . $exception->getMessage(),
                 ]);
         }
     }
@@ -123,10 +123,18 @@ class ColorStyleSizeController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($color_style_id,$size_id)
+    public function destroy($color_style_id, $size_id)
     {
-        $color_style = ColorStyle::find($color_style_id);
-        $color_style->sizes()->detach($size_id);
+        try {
+            $color_style = ColorStyle::find($color_style_id);
+            $color_style->sizes()->detach($size_id);
+        } catch (\Exception $e) {
+            Log::debug($e->getMessage());
+            return redirect()->back()->with([
+                'message' => $e->getMessage(),
+                'status' => 'danger'
+            ]);
+        }
         return redirect()->back()->with([
             'message' => 'Successfully Deleted'
         ]);

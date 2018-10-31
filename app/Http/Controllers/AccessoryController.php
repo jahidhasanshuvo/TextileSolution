@@ -20,7 +20,7 @@ class AccessoryController extends Controller
         $accessories = Accessory::all()->where('style_id', '=', $sid);
 //        dd($accessories);
         return view('accessories.index')->with([
-            'accessories' => $accessories, 'sid' => $sid,'oid'=>Style::find($sid)->order_id
+            'accessories' => $accessories, 'sid' => $sid, 'oid' => Style::find($sid)->order_id
         ]);
     }
 
@@ -47,20 +47,29 @@ class AccessoryController extends Controller
      */
     public function store($sid, Request $request)
     {
-        $accessory = new Accessory();
-        $accessory->name = $request->name;
-        $accessory->booking_quantity = $request->booking_quantity;
-        $accessory->received_quantity = $request->received_quantity;
-        $accessory->unit_id = $request->unit_id;
-        $accessory->balance = $request->balance;
-        $accessory->goods_received_date = $request->goods_received_date;
-        $accessory->work_order_submit_date = $request->work_order_submit_date;
-        $accessory->supplier_id = $request->supplier_id;
-        $accessory->style_id = $sid;
-        $accessory->save();
+        try {
+            $accessory = new Accessory();
+            $accessory->name = $request->name;
+            $accessory->booking_quantity = $request->booking_quantity;
+            $accessory->received_quantity = $request->received_quantity;
+            $accessory->unit_id = $request->unit_id;
+            $accessory->balance = $request->balance;
+            $accessory->goods_received_date = $request->goods_received_date;
+            $accessory->work_order_submit_date = $request->work_order_submit_date;
+            $accessory->supplier_id = $request->supplier_id;
+            $accessory->style_id = $sid;
+            $accessory->save();
+        } catch (\Exception $e) {
+            Log::debug($e->getMessage());
+            return redirect()->back()->with([
+                'message' => $e->getMessage(),
+                'status' => 'danger'
+            ]);
+        }
         return redirect()->back()
             ->with([
-                'message' => 'Accessories added successfully!'
+                'message' => 'Accessories added successfully!',
+                'status' => 'success'
             ]);
     }
 
@@ -83,7 +92,15 @@ class AccessoryController extends Controller
      */
     public function edit($sid, $id)
     {
-        $accessory = Accessory::find($id);
+        try {
+            $accessory = Accessory::find($id);
+        } catch (\Exception $e) {
+            Log::debug($e->getMessage());
+            return redirect()->back()->with([
+                'message' => $e->getMessage(),
+                'status' => 'danger'
+            ]);
+        }
         return view('accessories.edit')
             ->with([
                 'accessory' => $accessory,
@@ -102,23 +119,33 @@ class AccessoryController extends Controller
      */
     public function update($sid, Request $request, $id)
     {
-        $accessory = Accessory::find($id);
-        $accessory->name = $request->name;
-        $accessory->booking_quantity = $request->booking_quantity;
-        $accessory->received_quantity = $request->received_quantity;
-        $accessory->unit_id = $request->unit_id;
-        $accessory->balance = $request->balance;
-        $accessory->goods_received_date = $request->goods_received_date;
-        $accessory->work_order_submit_date = $request->work_order_submit_date;
-        $accessory->supplier_id = $request->supplier_id;
-        $accessory->style_id = $sid;
+        try {
+            $accessory = Accessory::find($id);
+            $accessory->name = $request->name;
+            $accessory->booking_quantity = $request->booking_quantity;
+            $accessory->received_quantity = $request->received_quantity;
+            $accessory->unit_id = $request->unit_id;
+            $accessory->balance = $request->balance;
+            $accessory->goods_received_date = $request->goods_received_date;
+            $accessory->work_order_submit_date = $request->work_order_submit_date;
+            $accessory->supplier_id = $request->supplier_id;
+            $accessory->style_id = $sid;
 //        $change=$accessory->getDirty();
 //        echo json_encode($change);
 //        exit();
-        $accessory->save();
+            $accessory->save();
+        } catch (\Exception $e) {
+            Log::debug($e->getMessage());
+            return redirect()->back()->with([
+                'message' => $e->getMessage(),
+                'status' => 'danger'
+            ]);
+        }
         return redirect(route('accessories.index', ['sid' => $sid]))
             ->with([
-                'message' => 'Accessories updated successfully!'
+                'message' => 'Accessories updated successfully!',
+                'status' => 'success'
+
             ]);
     }
 
@@ -130,11 +157,20 @@ class AccessoryController extends Controller
      */
     public function destroy($id)
     {
-        $accessory = Accessory::find($id);
-        $accessory->delete();
+        try {
+            $accessory = Accessory::find($id);
+            $accessory->delete();
+        } catch (\Exception $e) {
+            Log::debug($e->getMessage());
+            return redirect()->back()->with([
+                'message' => $e->getMessage(),
+                'status' => 'danger'
+            ]);
+        }
         return redirect()->back()
             ->with([
-                'message' => 'Accessories deleted successfully!'
+                'message' => 'Accessories deleted successfully!',
+                'status' => 'success'
             ]);
     }
 }

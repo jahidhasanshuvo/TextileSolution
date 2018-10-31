@@ -31,24 +31,33 @@ class UnitController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $unit = new Unit();
-        $unit->name = $request->name;
-        $unit->description = $request->description;
-        $unit->save();
+        try {
+            $unit = new Unit();
+            $unit->name = $request->name;
+            $unit->description = $request->description;
+            $unit->save();
+        } catch (\Exception $e) {
+            Log::debug($e->getMessage());
+            return redirect()->back()->with([
+                'message' => $e->getMessage(),
+                'status' => 'danger'
+            ]);
+        }
         return redirect()->back()->with([
-            'message' => "Unit Added"
+            'message' => "Unit Added Successfully!",
+            'status'  => 'success'
         ]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -59,45 +68,63 @@ class UnitController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         $unit = Unit::find($id);
-        return view('units.edit',['unit'=>$unit]);
+        return view('units.edit', ['unit' => $unit]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $unit = Unit::find($id);
-        $unit->name = $request->name;
-        $unit->description = $request->description;
-        $unit->save();
+        try {
+            $unit = Unit::find($id);
+            $unit->name = $request->name;
+            $unit->description = $request->description;
+            $unit->save();
+        } catch (\Exception $e) {
+            Log::debug($e->getMessage());
+            return redirect()->back()->with([
+                'message' => $e->getMessage(),
+                'status' => 'danger'
+            ]);
+        }
         return redirect(route('units.index'))->with([
-            'message' => "Unit Updated"
+            'message' => "Unit Updated Successfully!",
+            'status' => 'success'
         ]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $unit = Unit::find($id);
-        $unit->delete();
+        try {
+            $unit = Unit::find($id);
+            $unit->delete();
+        } catch (\Exception $e) {
+            Log::debug($e->getMessage());
+            return redirect()->back()->with([
+                'message' => $e->getMessage(),
+                'status' => 'danger'
+            ]);
+        }
         return redirect()->back()->with([
-            'message' => "Unit Deleted"
+            'message' => "Unit Deleted Successfully!",
+            'status' => 'success'
         ]);
     }
 }

@@ -31,24 +31,32 @@ class WorkingItemController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $working_item = new WorkingItem();
-        $working_item->name=$request->name;
-        $working_item->save();
+        try {
+            $working_item = new WorkingItem();
+            $working_item->name = $request->name;
+            $working_item->save();
+        } catch (\Exception $e) {
+            Log::debug($e->getMessage());
+            return redirect()->back()->with([
+                'message' => $e->getMessage(),
+                'status' => 'danger'
+            ]);
+        }
         return redirect()->back()->with([
-            'message'=>'Items Created Successfully',
-            'status'=>'success'
+            'message' => 'Items Created Successfully',
+            'status' => 'success'
         ]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -59,48 +67,73 @@ class WorkingItemController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $working_item = WorkingItem::find($id);
+        try {
+            $working_item = WorkingItem::find($id);
+        } catch (\Exception $e) {
+            Log::debug($e->getMessage());
+            return redirect()->back()->with([
+                'message' => $e->getMessage(),
+                'status' => 'danger'
+            ]);
+        }
         return view('working_items.edit')->with([
-            'working_item'=>$working_item
+            'working_item' => $working_item,
+            'status' => 'success'
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $working_item = WorkingItem::find($id);
-        $working_item->name=$request->name;
-        $working_item->save();
+        try {
+            $working_item = WorkingItem::find($id);
+            $working_item->name = $request->name;
+            $working_item->save();
+        } catch (\Exception $e) {
+            Log::debug($e->getMessage());
+            return redirect()->back()->with([
+                'message' => $e->getMessage(),
+                'status' => 'danger'
+            ]);
+        }
         return redirect(route('working_items.index'))->with([
-            'message'=>'Items Updated Successfully',
-            'status'=>'success'
+            'message' => 'Items Updated Successfully',
+            'status' => 'success'
         ]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $working_item = WorkingItem::find($id);
-        $working_item->delete();
+        try {
+            $working_item = WorkingItem::find($id);
+            $working_item->delete();
+        } catch (\Exception $e) {
+            Log::debug($e->getMessage());
+            return redirect()->back()->with([
+                'message' => $e->getMessage(),
+                'status' => 'danger'
+            ]);
+        }
         return redirect()->back()->with([
-            'message'=>'Items Deleted Successfully',
-            'status'=>'success'
+            'message' => 'Items Deleted Successfully',
+            'status' => 'success'
         ]);
     }
 }
