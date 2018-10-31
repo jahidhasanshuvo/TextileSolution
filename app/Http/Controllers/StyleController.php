@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Style;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Log;
 
 class StyleController extends Controller
 {

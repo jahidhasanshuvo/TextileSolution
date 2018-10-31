@@ -6,6 +6,7 @@ use App\Size;
 use App\Color;
 use App\SizeColor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class SizeColorController extends Controller
 {

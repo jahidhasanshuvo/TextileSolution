@@ -7,6 +7,7 @@ use App\Style;
 use App\Supplier;
 use App\Unit;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Log;
 
 class AccessoryController extends Controller
 {

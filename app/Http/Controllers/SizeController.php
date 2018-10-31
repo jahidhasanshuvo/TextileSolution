@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Size;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Log;
 
 class SizeController extends Controller
 {

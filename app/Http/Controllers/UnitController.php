@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Unit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class UnitController extends Controller
 {
