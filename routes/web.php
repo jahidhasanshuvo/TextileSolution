@@ -34,6 +34,9 @@ Route::middleware('auth')->group(function (){
     Route::resource('style/{sid}/work_plans','WorkPlanController');
     Route::resource('orders','OrderController');
     Route::resource('style/{sid}/accessories','AccessoryController');
+
+
+    Route::resource('/users','UserController')->only('index','edit','update');
 });
 
 
